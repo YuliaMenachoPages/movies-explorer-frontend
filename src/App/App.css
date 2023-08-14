@@ -1,0 +1,8 @@
+.app {
+    --main-bg-color: rgba(32, 32, 32, 1);
+    background-color: var(--main-bg-color);
+    margin: 0 auto;
+    max-width: 1280px;
+    min-width: 320px;
+    min-height: 100vh;
+}

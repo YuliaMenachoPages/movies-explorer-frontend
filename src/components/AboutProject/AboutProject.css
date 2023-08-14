@@ -1,0 +1,86 @@
+.aboutProject {
+    --main-text-color: rgba(255, 255, 255, 1);
+    --secondary-text-color: rgba(139, 139, 139, 1);
+    --additional-text-color: rgba(0, 0, 0, 1);
+    --accent-color-green: rgba(61, 220, 132, 1);
+    --additional-color: rgba(48, 48, 48, 1);
+    margin: 50px 0 0 0;
+}
+
+.aboutProject__about {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(284px, auto));
+    gap: 40px;
+    margin-bottom: 100px;
+}
+
+.aboutProject__stage {
+    color: var(--main-text-color);
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    padding: 0 0 3px 0;
+}
+
+.aboutProject__description {
+    color: var(--main-text-color);
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 0;
+}
+
+.aboutProject__progressBar {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax( 140px, 1fr ) 4fr;
+    align-items: center;
+}
+
+.aboutProject__backend {
+background-color: var(--accent-color-green);
+}
+
+.aboutProject__progressBackend {
+    color: var(--additional-text-color);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 11px;
+}
+
+.aboutProject__frontend {
+    background-color: var(--additional-color);
+
+}
+
+.aboutProject__progressFrontend {
+    color: var(--main-text-color);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 11px;
+}
+
+.aboutProject__title {
+    color: var(--secondary-text-color);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+    padding: 0;
+    margin: 12px 0 0 0;
+}

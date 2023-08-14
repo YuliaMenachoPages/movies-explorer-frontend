@@ -1,0 +1,45 @@
+.linkWrapper {
+    --main-text-color: rgba(255, 255, 255, 1);
+    --accent-color-blue: rgba(66, 133, 244, 1);
+}
+
+.link {
+    color: var(--main-text-color);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    text-decoration: none;
+    letter-spacing: -1.2px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.link:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.link:active {
+    text-decoration: none;
+    opacity: 0.6;
+}
+
+.link_kind_github {
+    align-self: end;
+    justify-self: end;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+@media screen and (max-width: 768px) {
+    .link {
+
+    }
+    .link:active {
+
+    }
+}

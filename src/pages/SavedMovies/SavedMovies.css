@@ -1,0 +1,8 @@
+.savedMovies {
+    width: 100%;
+    padding: 0 70px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+}
