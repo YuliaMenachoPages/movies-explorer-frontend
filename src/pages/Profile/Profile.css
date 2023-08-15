@@ -94,3 +94,17 @@
     line-height: normal;
 }
 
+@media screen and (max-width: 900px){
+    .profile__title {
+        margin: 20px auto 95px auto;
+    }
+        .profile__wrapper {
+        justify-content: center;
+        flex: 0 0 auto;
+        padding-bottom: 210px;
+    }
+    .profile__buttons {
+        margin-bottom: 52px;
+    }
+    }
+

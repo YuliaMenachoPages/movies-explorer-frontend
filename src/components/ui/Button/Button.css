@@ -104,3 +104,8 @@
         background-color: rgba(248, 248, 248, 1);
 }
 
+@media screen and (max-width: 900px) {
+    .button_type_more {
+        font-size: 12px;
+    }
+    }

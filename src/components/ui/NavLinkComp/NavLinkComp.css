@@ -87,9 +87,12 @@ text-decoration: none;
     font-weight: 500;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .navLink {
-
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
     }
     .navLink:active {
 

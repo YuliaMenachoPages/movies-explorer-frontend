@@ -35,11 +35,17 @@
     line-height: normal;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .link {
-
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 50px;
+        letter-spacing: -1.12px;
     }
-    .link:active {
-
+    .link_kind_github {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: -0.5px;
     }
-}
+    }

@@ -3,7 +3,7 @@ import LinkComp from "../ui/LinkCopm/LinkComp";
 import Portfolio from "../Portfolio/Portfolio";
 import student from '../../images/student.jpg'
 
-function AboutMe({children}) {
+function AboutMe() {
     return (
         <>
             <div className="aboutMe">

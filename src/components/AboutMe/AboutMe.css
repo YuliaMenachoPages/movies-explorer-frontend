@@ -19,10 +19,6 @@
     min-height: 327px;
 }
 
-.aboutMe__description {
-
-}
-
 .aboutMe__name {
     color: var(--main-text-color);
     font-family: Inter, sans-serif;
@@ -68,3 +64,34 @@
     align-self: center;
     justify-self: center;
 }
+
+@media screen and (max-width: 900px) {
+    .aboutMe {
+        grid-template-columns: minmax(auto, 600px) minmax(auto, 255px);
+        gap: 49px;
+        margin: 66px 0 90px 0;
+    }
+    .aboutMe__info {
+        min-height: 307px;
+    }
+        .aboutMe__name {
+        font-size: 40px;
+        line-height: 40px;
+        letter-spacing: -1.6px;
+    }
+    .aboutMe__profession {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 18px 0;
+    }
+    .aboutMe__bio {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .aboutMe__picture {
+        width: 255px;
+        height: 307px;
+        padding: 0;
+        margin: 0;
+    }
+    }

@@ -62,3 +62,24 @@
     line-height: normal;
     letter-spacing: -0.56px;
 }
+
+@media screen and (max-width: 900px) {
+    .techs__title {
+        margin: 78px auto 22px auto;
+    }
+    .techs__subtitle {
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: -0.48px;
+        margin: 0 auto 82px auto;
+    }
+    .techs__item {
+        width: 84px;
+        height: 57px;
+    }
+        .techs__item-text {
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: -0.48px;
+    }
+    }

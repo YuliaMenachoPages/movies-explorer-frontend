@@ -10,15 +10,15 @@ function MoviesCardList({children}) {
         < MoviesCard children={children}/>
         < MoviesCard children={children}/>
         < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
-        < MoviesCard children={children}/>
+        {/*< MoviesCard children={children}/>*/}
+        {/*< MoviesCard children={children}/>*/}
+        {/*< MoviesCard children={children}/>*/}
+        {/*< MoviesCard children={children}/>*/}
+        {/*< MoviesCard children={children}/>*/}
+        {/*< MoviesCard children={children}/>*/}
+        {/*< MoviesCard children={children}/>*/}
+        {/*< MoviesCard children={children}/>*/}
+        {/*< MoviesCard children={children}/>*/}
     </div>
 </div>
     )

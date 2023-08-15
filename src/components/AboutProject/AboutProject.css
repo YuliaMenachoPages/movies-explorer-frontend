@@ -84,3 +84,14 @@ background-color: var(--accent-color-green);
     padding: 0;
     margin: 12px 0 0 0;
 }
+
+@media screen and (max-width: 900px) {
+    .aboutProject__description {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .aboutProject__about {
+        gap: 30px;
+        margin-bottom: 78px;
+    }
+    }

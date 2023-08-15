@@ -6,3 +6,8 @@
     flex-direction: column;
     flex: 1 0 auto;
 }
+@media screen and (max-width: 900px) {
+    .savedMovies {
+        padding: 0 30px 20px;
+    }
+}

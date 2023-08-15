@@ -16,3 +16,13 @@ align-items: flex-start;
 .searchForm__toggleWrapper {
 align-self: center;
 }
+
+@media screen and (max-width: 900px){
+    .searchForm {
+        padding-bottom: 27px;
+    }
+
+        .searchForm__toggleWrapper {
+        padding-top: 10px;
+    }
+    }
