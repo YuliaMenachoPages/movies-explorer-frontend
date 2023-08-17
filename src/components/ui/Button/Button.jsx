@@ -13,5 +13,4 @@ function Button({kind, disabled, onClick, type, children}) {
         </button>
     );
 }
-
 export default Button
