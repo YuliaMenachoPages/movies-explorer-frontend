@@ -25,13 +25,13 @@
 }
 
 .moviesCard__img {
-object-fit: contain;
+    object-fit: contain;
     border-radius: 8px;
     max-width: 100%;
 }
 
 .moviesCard__info {
-display: flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -87,5 +87,10 @@ display: flex;
     .moviesCard__imgWrapper {
         height: 168px;
     }
+}
 
+@media screen and (max-width: 600px) {
+    .moviesCard__info {
+        padding: 15px 0 0;
     }
+}

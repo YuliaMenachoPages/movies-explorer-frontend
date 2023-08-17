@@ -15,7 +15,7 @@
     border: none;
     transition: opacity 0.3s;
     padding: 13px 0 15px 0;
-    }
+}
 
 .button_type_save {
     position: absolute;
@@ -53,7 +53,7 @@
     width: auto;
     background-color: transparent;
     align-self: center;
-    }
+}
 
 .button_type_delete {
     position: absolute;
@@ -100,12 +100,29 @@
 }
 
 .button:disabled {
-        color: rgba(194, 194, 194, 1);
-        background-color: rgba(248, 248, 248, 1);
+    color: rgba(194, 194, 194, 1);
+    background-color: rgba(248, 248, 248, 1);
 }
 
 @media screen and (max-width: 900px) {
     .button_type_more {
         font-size: 12px;
+        width: 240px;
     }
+
+    .button_type_save {
+        top: 10px;
+        right: 10px;
     }
+
+    .button_type_saved {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .button {
+        font-size: 12px;
+    }
+}

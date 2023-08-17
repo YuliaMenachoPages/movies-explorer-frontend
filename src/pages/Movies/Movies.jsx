@@ -6,11 +6,12 @@ import Button from "../../components/ui/Button/Button";
 function Movies() {
     const isSaved = false;
     return (
-<div className="movies">
-    <SearchForm />
-    <MoviesCardList children={isSaved ? <Button kind={"saved"} type={"input"}/> : <Button kind={"save"} type={"input"} children={"Сохранить"}/>}/>
-    <Button children={"Ещё"} kind={"more"}/>
-</div>
+        <div className="movies">
+            <SearchForm/>
+            <MoviesCardList children={isSaved ? <Button kind={"saved"} type={"input"}/> :
+                <Button kind={"save"} type={"input"} children={"Сохранить"}/>}/>
+            <Button children={"Ещё"} kind={"more"}/>
+        </div>
     )
 }
 

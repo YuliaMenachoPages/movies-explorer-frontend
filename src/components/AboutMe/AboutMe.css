@@ -71,27 +71,86 @@
         gap: 49px;
         margin: 66px 0 90px 0;
     }
+
     .aboutMe__info {
         min-height: 307px;
     }
-        .aboutMe__name {
+
+    .aboutMe__name {
         font-size: 40px;
         line-height: 40px;
         letter-spacing: -1.6px;
     }
+
     .aboutMe__profession {
         font-size: 12px;
         line-height: 18px;
         margin: 0 0 18px 0;
     }
+
     .aboutMe__bio {
         font-size: 12px;
         line-height: 18px;
     }
+
     .aboutMe__picture {
         width: 255px;
         height: 307px;
         padding: 0;
         margin: 0;
     }
+}
+
+@media screen and (max-width: 900px) {
+    .aboutMe {
+        display: flex;
+        flex-direction: column;
     }
+
+    .aboutMe__name {
+        font-size: 30px;
+        letter-spacing: -1.2px;
+    }
+
+    .aboutMe__profession {
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    .aboutMe__bio {
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    .aboutMe__picture {
+        order: -1;
+    }
+
+    .aboutMe__info {
+        height: auto;
+    }
+
+    .aboutMe__bio {
+        padding-bottom: 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .aboutMe {
+        gap: 35px;
+        margin-bottom: 60px;
+    }
+
+    .aboutMe__picture {
+        width: 292px;
+        height: 352px;
+    }
+
+    .aboutMe__info {
+        min-height: 260px;
+    }
+}

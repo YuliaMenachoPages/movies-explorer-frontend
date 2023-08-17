@@ -43,7 +43,7 @@
 }
 
 .aboutProject__backend {
-background-color: var(--accent-color-green);
+    background-color: var(--accent-color-green);
 }
 
 .aboutProject__progressBackend {
@@ -59,7 +59,6 @@ background-color: var(--accent-color-green);
 
 .aboutProject__frontend {
     background-color: var(--additional-color);
-
 }
 
 .aboutProject__progressFrontend {
@@ -90,8 +89,52 @@ background-color: var(--accent-color-green);
         font-size: 12px;
         line-height: 18px;
     }
+
     .aboutProject__about {
         gap: 30px;
         margin-bottom: 78px;
     }
+}
+
+@media screen and (max-width: 600px) {
+    .aboutProject {
+        margin: 45px 0 0 0;
     }
+
+    .aboutProject__about {
+        gap: 27px;
+        margin-bottom: 48px;
+    }
+
+    .aboutProject__stage {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        padding: 0;
+
+    }
+
+    .aboutProject__description {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .aboutProject__title {
+        font-size: 11px;
+        font-weight: 400;
+        margin: 10px 0 0 0;
+    }
+
+    .aboutProject__progressBackend {
+        font-size: 11px;
+        margin: 10px;
+    }
+
+    .aboutProject__progressFrontend {
+        font-size: 11px;
+        margin: 10px;
+    }
+
+    .aboutProject__progressBar {
+        grid-template-columns: minmax( 100px, 1fr ) 4fr;
+    }
+}

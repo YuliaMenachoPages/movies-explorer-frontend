@@ -6,8 +6,8 @@ import Button from "../../components/ui/Button/Button";
 function SavedMovies() {
     return (
         <div className="savedMovies">
-            <SearchForm />
-            <MoviesCardList children={<Button kind={"delete"} type={"input"} />} />
+            <SearchForm/>
+            <MoviesCardList children={<Button kind={"delete"} type={"input"}/>}/>
         </div>
     )
 }

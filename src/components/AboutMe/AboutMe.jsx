@@ -20,7 +20,8 @@ function AboutMe() {
                             После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с
                             постоянной работы.</p>
                     </div>
-                    <LinkComp kind={"github"} children={"Github"} direction={"https://github.com/YuliaMenachoPages"} target={"_blank"} rel={"noopener noreferrer"}/>
+                    <LinkComp kind={"github"} children={"Github"} direction={"https://github.com/YuliaMenachoPages"}
+                              target={"_blank"} rel={"noopener noreferrer"}/>
                 </div>
                 <img src={student} alt="Фото студента." className="aboutMe__picture"/>
             </div>

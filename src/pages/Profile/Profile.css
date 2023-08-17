@@ -1,5 +1,5 @@
 .pageProfile {
-   display: flex;
+    display: flex;
     flex-direction: column;
     min-height: 100vh;
     --main-text-color: rgba(255, 255, 255, 1);
@@ -19,7 +19,7 @@
 }
 
 .profile__wrapper {
-   display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -94,17 +94,36 @@
     line-height: normal;
 }
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 900px) {
     .profile__title {
         margin: 20px auto 95px auto;
     }
-        .profile__wrapper {
+
+    .profile__wrapper {
         justify-content: center;
         flex: 0 0 auto;
         padding-bottom: 210px;
     }
+
     .profile__buttons {
         margin-bottom: 52px;
     }
+}
+
+@media screen and (max-width: 480px) {
+    .profile__title {
+        margin: 57px auto 75px auto;
     }
+
+    .profile {
+        margin: 0 30px;
+        width: auto;
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    .profile__wrapper {
+        padding-bottom: 373px;
+    }
+}
 

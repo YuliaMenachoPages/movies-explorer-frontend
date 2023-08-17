@@ -42,10 +42,25 @@
         line-height: 50px;
         letter-spacing: -1.12px;
     }
+
     .link_kind_github {
         font-size: 14px;
         font-weight: 500;
         line-height: normal;
         letter-spacing: -0.5px;
     }
+}
+
+@media screen and (max-width: 900px) {
+    .link {
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: -0.72px;
     }
+}
+
+@media screen and (max-width: 900px) {
+    .link_kind_github {
+        font-size: 14px;
+    }
+}

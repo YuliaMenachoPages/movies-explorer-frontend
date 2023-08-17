@@ -12,7 +12,7 @@
 
 .navLinkWrapper:active {
     opacity: 0.6;
-  }
+}
 
 .navLink {
     color: var(--main-text-color);
@@ -76,11 +76,11 @@
 }
 
 .navLink:hover {
-text-decoration: none;
+    text-decoration: none;
 }
 
 .navLink:active {
-   text-decoration: none;
+    text-decoration: none;
 }
 
 .active {
@@ -90,11 +90,42 @@ text-decoration: none;
 @media screen and (max-width: 900px) {
     .navLink {
         font-size: 12px;
-        font-style: normal;
         font-weight: 500;
         line-height: 16px;
     }
-    .navLink:active {
 
+    .navLink_kind_burger {
+        text-align: center;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+.active {
+    text-decoration: underline;
+}
+}
+
+@media screen and (max-width: 600px) {
+    .navLink {
+        font-size: 10px;
+    }
+
+    .navLinkWrapper_kind_green {
+        padding: 5px 12px;
+    }
+
+    .navLink_kind_burger {
+        text-align: center;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: normal;
+    }
+    .navLink_kind_account {
+        font-size: 14px;
     }
 }
+
+

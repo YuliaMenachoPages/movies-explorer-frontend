@@ -1,6 +1,6 @@
 .error {
     --main-text-color: rgba(255, 255, 255, 1);
-margin: 0 auto;
+    margin: 0 auto;
     width: 100%;
     min-height: 100vh;
     box-sizing: border-box;
@@ -13,7 +13,7 @@ margin: 0 auto;
 .error__status {
     color: var(--main-text-color);
     text-align: center;
-    font-family: Inter,sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 140px;
     font-style: normal;
     font-weight: 400;
@@ -45,4 +45,22 @@ margin: 0 auto;
     display: flex;
     flex-direction: column;
     margin: 184px auto 60px auto;
+}
+
+@media screen and (max-width: 480px) {
+    .error {
+        justify-content: flex-end;
+    }
+
+    .error__status {
+        font-size: 80px;
+    }
+
+    .error__message {
+        font-size: 12px;
+    }
+
+    .error__linkWrapper {
+        margin: 285px auto 30px auto;
+    }
 }

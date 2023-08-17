@@ -24,7 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
 .toggle__slider {
     position: absolute;
@@ -51,7 +51,7 @@
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
-    }
+}
 
 .toggle__input:checked + .toggle__slider {
     background-color: var(--accent-color-green);

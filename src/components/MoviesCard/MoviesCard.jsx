@@ -6,7 +6,7 @@ function MoviesCard({children}) {
         <li className="moviesCard">
             {children}
             <div className="moviesCard__imgWrapper">
-                <img src={movie} alt="Постер" className="moviesCard__img" />
+                <img src={movie} alt="Постер" className="moviesCard__img"/>
             </div>
             <div className="moviesCard__info">
                 <h2 className="moviesCard__title">Test</h2>
@@ -17,4 +17,5 @@ function MoviesCard({children}) {
         </li>
     )
 }
+
 export default MoviesCard;
