@@ -58,6 +58,10 @@
     line-height: normal;
 }
 
+.navLinkWrapper_kind_blue {
+    margin-top: 5px;
+}
+
 .navLink_kind_blue {
     color: var(--accent-color-blue);
     text-align: center;
@@ -66,8 +70,8 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 .navLink_kind_account {
@@ -94,17 +98,32 @@
         line-height: 16px;
     }
 
+    .navLink_kind_burger.active {
+        padding-bottom: 4px;
+        border-bottom: 2px solid var(--main-text-color);
+    }
+
     .navLink_kind_burger {
         text-align: center;
         font-feature-settings: 'clig' off, 'liga' off;
         font-size: 18px;
         font-weight: 500;
         line-height: normal;
+        padding-bottom: 5px;
     }
 
-.active {
-    text-decoration: underline;
-}
+    .navLink_kind_burger.active {
+        padding-bottom: 5px;
+        border-bottom: 2px solid var(--main-text-color);
+    }
+
+    .active {
+        text-decoration: none;
+    }
+
+    .navLink_kind_blue {
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -123,8 +142,14 @@
         font-weight: 500;
         line-height: normal;
     }
+
     .navLink_kind_account {
         font-size: 14px;
+    }
+
+    .navLink_kind_burger.active {
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--main-text-color);
     }
 }
 

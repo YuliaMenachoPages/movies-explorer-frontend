@@ -3,9 +3,9 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList({children}) {
     return (
-        <div className="moviesCardList">
+        <section className="moviesCardList">
             {/*<Preloader />*/}
-            <div className="moviesCardList__wrapper">
+            <ul className="moviesCardList__wrapper">
                 < MoviesCard children={children}/>
                 < MoviesCard children={children}/>
                 < MoviesCard children={children}/>
@@ -18,8 +18,8 @@ function MoviesCardList({children}) {
                 {/*< MoviesCard children={children}/>*/}
                 {/*< MoviesCard children={children}/>*/}
                 {/*< MoviesCard children={children}/>*/}
-            </div>
-        </div>
+            </ul>
+        </section>
     )
 }
 

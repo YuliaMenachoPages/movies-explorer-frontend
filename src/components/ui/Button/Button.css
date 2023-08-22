@@ -121,8 +121,13 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .button {
         font-size: 12px;
+    }
+
+    .button_type_search {
+        height: 42px;
+        margin: 0;
     }
 }

@@ -1,6 +1,6 @@
 .header {
     margin: 0 auto;
-    padding: 9px 70px 18px;
+    padding: 11px 70px 18px;
     width: 100%;
     box-sizing: border-box;
     position: relative;
@@ -8,7 +8,7 @@
 
 @media screen and (max-width: 900px) {
     .header {
-        padding: 15px 30px 16px;
+        padding: 12px 30px 30px;
     }
 }
 

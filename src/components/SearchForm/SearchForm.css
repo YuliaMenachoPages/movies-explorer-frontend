@@ -11,6 +11,10 @@
     grid-template-columns: auto 44px;
     gap: 10px;
     align-items: flex-start;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
 }
 
 .searchForm__toggleWrapper {
@@ -18,12 +22,12 @@
 }
 
 @media screen and (max-width: 900px) {
-    .searchForm {
-        padding-bottom: 27px;
-    }
-
     .searchForm__toggleWrapper {
         padding-top: 10px;
+    }
+
+    .searchForm {
+        padding: 60px 0 27px 0;
     }
 }
 

@@ -5,6 +5,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .navigation__wrapper {
@@ -17,7 +18,15 @@
     margin: 0;
 }
 
-.navigation__list {
+.navigation__list_loggedOut {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+.navigation__list_loggedIn {
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -27,7 +36,7 @@
 
 @media screen and (max-width: 900px) {
     .hidden {
-display: none;
+        display: none;
     }
 
     .navigation__list {

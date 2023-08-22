@@ -8,14 +8,14 @@ function Login() {
     return (
         <FormWrapper
             title={"Рады видеть!"}
-            button={<Button children={"Войти"}/>}
+            button={<Button type={"submit"} children={"Войти"}/>}
             text={"Еще не зарегистрированы?"}
             link={<NavLinkComp children={"Регистрация"} direction={"/signup"} kind={"blue"}/>}
         >
-            <Input labelText={"E-mail"} inpId={"loginEmail"} type={"email"} required/>
+            <Input labelText={"E-mail"} inpId={"loginEmail"} type={"email"} placeholder={"Почта"} required/>
             <Input labelText={"Пароль"}
-                   errorText={"error error error error error error error error error error error error error error error error error error error error error error error errorerror error error error errorerror error"}
-                   inpId={"loginPassword"} type={"password"} required/>
+                   inpId={"loginPassword"} type={"password"} minLength="2" maxLength="30" placeholder={"Пароль"}
+                   required/>
         </FormWrapper>
     )
 }

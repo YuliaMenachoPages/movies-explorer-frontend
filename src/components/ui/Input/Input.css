@@ -24,6 +24,7 @@
     padding: 0 20px;
     box-sizing: border-box;
     margin: 8px 0 14px 0;
+    cursor: pointer;
 }
 
 .inputField::placeholder {
@@ -54,16 +55,14 @@
     font-size: 11px;
     padding: 0;
     margin: 0;
-    height: 15px
+    height: 20px;
+    border-radius: 2px;
+
 }
 
 .inputField_kind_profile::placeholder {
     color: var(--main-text-color);
     opacity: 1;
-}
-
-.inputField_kind_profile:focus {
-    outline: none;
 }
 
 .input__label {
@@ -102,4 +101,11 @@
     -webkit-box-orient: vertical;
     margin: 0;
     padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+
+    .inputField_kind_search {
+        height: 44px;
+    }
 }

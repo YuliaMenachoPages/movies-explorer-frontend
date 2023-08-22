@@ -1,7 +1,7 @@
 import './Navigation.css';
 import NavLinkComp from "../ui/NavLinkComp/NavLinkComp";
-import Burger from "../ui/Burger/Burger";
 import React from "react";
+import Burger from "../ui/Burger/Burger";
 
 function Navigation({children}) {
     const loggedIn = true;
@@ -11,7 +11,7 @@ function Navigation({children}) {
             {loggedIn ?
                 <>
                     <nav className="navigation__wrapper hidden">
-                                               <ul className="navigation__list">
+                        <ul className="navigation__list_loggedIn">
                             <li className="navigation__item">
                                 <NavLinkComp children={"Фильмы"} direction={"/movies"}/>
                             </li>
@@ -21,13 +21,13 @@ function Navigation({children}) {
                         </ul>
                     </nav>
                     <div className="hidden">
-                    <NavLinkComp children={"Аккаунт"} kind={"account"} direction={"/profile"}/>
+                        <NavLinkComp children={"Аккаунт"} kind={"account"} direction={"/profile"}/>
                     </div>
-                    <Burger />
+                    <Burger/>
                 </>
                 :
                 <nav className="navigation__wrapper">
-                    <ul className="navigation__list">
+                    <ul className="navigation__list_loggedOut">
                         <li className="navigation__item">
                             <NavLinkComp children={"Регистрация"} direction={"/signup"}/>
                         </li>

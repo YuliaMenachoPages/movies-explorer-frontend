@@ -68,11 +68,11 @@
 
 @media screen and (max-width: 900px) {
     .formWrapper {
-        padding: 83px 0 0 0;
+        padding: 75px 0 0 0;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .formWrapper__header {
         width: 38px;
         margin: 0 auto;
@@ -86,8 +86,8 @@
     }
 
     .formWrapper__title {
-        align-self: center;
-        margin: 47px 0 75px;
+        text-align: center;
+        margin: 37px 0 75px;
     }
 
     .formWrapper__fieldset {

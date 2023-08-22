@@ -7,6 +7,12 @@
     --accent-color-pink: rgba(238, 52, 101, 1);
 }
 
+.mainProfile {
+    display: flex;
+    flex-direction: column;
+    min-height: 88vh;
+}
+
 .profile {
     display: flex;
     flex-direction: column;
@@ -49,7 +55,6 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--border-color);
-    margin: 0;
     padding: 0 0 13px 0;
 }
 
@@ -59,7 +64,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 0;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .profile__type {
@@ -110,9 +115,9 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .profile__title {
-        margin: 57px auto 75px auto;
+        margin: 55px auto 75px auto;
     }
 
     .profile {
@@ -123,7 +128,9 @@
     }
 
     .profile__wrapper {
-        padding-bottom: 373px;
+        padding-bottom: 378px;
     }
+
+
 }
 

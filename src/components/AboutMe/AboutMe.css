@@ -101,15 +101,19 @@
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
     .aboutMe {
         display: flex;
         flex-direction: column;
+        gap: 35px;
+        margin-bottom: 60px;
+        margin-top: 60px;
     }
 
     .aboutMe__name {
         font-size: 30px;
         letter-spacing: -1.2px;
+        margin-top: 3px;
     }
 
     .aboutMe__profession {
@@ -128,10 +132,13 @@
 
     .aboutMe__picture {
         order: -1;
+        width: 292px;
+        height: 352px;
     }
 
     .aboutMe__info {
         height: auto;
+        min-height: 260px;
     }
 
     .aboutMe__bio {
@@ -139,18 +146,3 @@
     }
 }
 
-@media screen and (max-width: 600px) {
-    .aboutMe {
-        gap: 35px;
-        margin-bottom: 60px;
-    }
-
-    .aboutMe__picture {
-        width: 292px;
-        height: 352px;
-    }
-
-    .aboutMe__info {
-        min-height: 260px;
-    }
-}

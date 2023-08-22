@@ -57,14 +57,6 @@
 .footer__partnersItem {
     padding: 0 0 0 20px;
     margin: 0;
-    color: var(--main-text-color);
-    text-align: right;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter, sans-serif;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 }
 
 @media screen and (max-width: 900px) {
@@ -87,6 +79,11 @@
 
     .footer__copyright {
         color: var(--secondary-text-color);
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
     }
 
     .footer__partnersList {
@@ -94,8 +91,8 @@
         align-items: center;
         justify-content: center;
         order: -1;
-        gap: 12px;
-        margin-bottom: 30px;
+        gap: 0;
+        margin-bottom: 20px;
         font-size: 12px;
     }
 

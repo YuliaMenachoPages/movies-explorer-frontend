@@ -9,13 +9,14 @@ import Logo from "../../components/Logo/Logo";
 
 function Main() {
     return (
-        <main className="main">
+        <div className="main">
             <Header>
                 <Navigation children={<Logo/>}/>
+                {/*<Burger />*/}
             </Header>
             <Outlet/>
             <Footer/>
-        </main>
+        </div>
     )
 }
 

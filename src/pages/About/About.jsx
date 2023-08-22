@@ -9,12 +9,12 @@ import SectionWrapper from "../../components/SectionWrapper/SectionWrapper";
 
 function About() {
     return (
-        <div className="about">
+        <main className="about">
             <Promo/>
             <SectionWrapper idNav={"aboutProject"} title={"О проекте"} children={<AboutProject/>}/>
             <SectionWrapper idNav={"techs"} kind={"gray"} title={"Технологии"} children={<Techs/>}/>
             <SectionWrapper idNav={"aboutMe"} kind={"wide"} title={"Студент"} children={<AboutMe/>}/>
-        </div>
+        </main>
     )
 }
 

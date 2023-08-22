@@ -8,14 +8,15 @@ function Register() {
     return (
         <FormWrapper
             title={"Добро пожаловать!"}
-            button={<Button children={"Зарегистрироваться"}/>}
+            button={<Button children={"Зарегистрироваться"} type={"button"}/>}
             text={"Уже зарегистрированы?"}
             link={<NavLinkComp children={"Войти"} direction={"/signin"} kind={"blue"}/>}
         >
             <Input labelText={"Имя"} errorText={""} inpId={"registerName"} type={"text"} minLength="2" maxLength="30"
-                   required/>
-            <Input labelText={"E-mail"} inpId={"registerEmail"} type={"email"} required/>
-            <Input labelText={"Пароль"} errorText={"error"} inpId={"registerPassword"} type={"password"} required/>
+                   placeholder={"Имя"} required/>
+            <Input labelText={"E-mail"} inpId={"registerEmail"} type={"email"} placeholder={"Почта"} required/>
+            <Input labelText={"Пароль"} errorText={"error"} inpId={"registerPassword"} type={"password"} minLength="2"
+                   maxLength="30" placeholder={"Пароль"} required/>
         </FormWrapper>
     )
 }
