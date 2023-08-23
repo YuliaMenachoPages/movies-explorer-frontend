@@ -1,0 +1,38 @@
+.searchForm {
+    --border-color: rgba(66, 66, 66, 1);
+    padding: 75px 0 23px 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.searchForm__bar {
+    display: grid;
+    grid-template-columns: auto 44px;
+    gap: 10px;
+    align-items: flex-start;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+
+.searchForm__toggleWrapper {
+    align-self: center;
+}
+
+@media screen and (max-width: 900px) {
+    .searchForm__toggleWrapper {
+        padding-top: 10px;
+    }
+
+    .searchForm {
+        padding: 60px 0 27px 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .searchForm {
+        padding-top: 65px;
+    }
+}

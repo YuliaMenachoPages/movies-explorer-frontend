@@ -1,0 +1,10 @@
+@import url('./vendor/normalize.css');
+
+@import url('./vendor/fonts/fonts.css');
+
+.page {
+    --main-bg-color: rgba(32, 32, 32, 1);
+    background-color: var(--main-bg-color);
+    height: 100%;
+}
+

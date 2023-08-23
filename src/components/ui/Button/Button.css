@@ -1,0 +1,133 @@
+.button {
+    --main-text-color: rgba(255, 255, 255, 1);
+    --accent-color-blue: rgba(66, 133, 244, 1);
+    --border-color: rgba(66, 66, 66, 1);
+    border-radius: 3px;
+    background-color: var(--accent-color-blue);
+    width: 100%;
+    color: var(--main-text-color);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+    transition: opacity 0.3s;
+    padding: 13px 0 15px 0;
+}
+
+.button_type_save {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background-color: rgba(49, 49, 49, 1);
+    border-radius: 30px;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 9px;
+    width: auto;
+    padding: 6px 7px;
+}
+
+.button_type_saved {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background-image: url("../../../images/save3.svg");
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 21px;
+    padding: 0;
+}
+
+.button_type_more {
+    border-radius: 8px;
+    min-width: 320px;
+    border: 1px solid var(--border-color);
+    padding: 10px 60px;
+    width: auto;
+    background-color: transparent;
+    align-self: center;
+}
+
+.button_type_delete {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background-image: url("../../../images/delete.svg");
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 21px;
+    padding: 0;
+}
+
+.button_type_search {
+    width: 44px;
+    aspect-ratio: 1;
+    background-image: url("../../../images/find.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+    margin: 3px 0;
+}
+
+.button_type_editProfile {
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+.button_type_saveProfile {
+    flex: 1 0 auto;
+}
+
+.button:not([disabled]):hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.button:not([disabled]):active {
+    opacity: 0.6;
+    cursor: pointer;
+
+}
+
+.button:disabled {
+    color: rgba(194, 194, 194, 1);
+    background-color: rgba(248, 248, 248, 1);
+}
+
+@media screen and (max-width: 900px) {
+    .button_type_more {
+        font-size: 12px;
+        width: 240px;
+    }
+
+    .button_type_save {
+        top: 10px;
+        right: 10px;
+    }
+
+    .button_type_saved {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .button {
+        font-size: 12px;
+    }
+
+    .button_type_search {
+        height: 42px;
+        margin: 0;
+    }
+}

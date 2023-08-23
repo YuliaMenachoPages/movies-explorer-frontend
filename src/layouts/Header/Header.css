@@ -1,0 +1,20 @@
+.header {
+    margin: 0 auto;
+    padding: 11px 70px 18px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+@media screen and (max-width: 900px) {
+    .header {
+        padding: 12px 30px 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .header {
+        padding: 14px 14px 25px;
+    }
+}
+

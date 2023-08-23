@@ -1,0 +1,49 @@
+.hashLinkWrapper {
+    --main-text-color: rgba(255, 255, 255, 1);
+    --additional-color: rgba(48, 48, 48, 1);
+    transition: opacity 0.3s;
+    background-color: var(--additional-color);
+    border-radius: 10px;
+    padding: 10px 0;
+    width: 96px;
+    text-align: center;
+}
+
+.hashLinkWrapper:hover {
+    opacity: 0.8;
+}
+
+.hashLinkWrapper:active {
+    opacity: 0.6;
+}
+
+.hashLink {
+    color: var(--main-text-color);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hashLink:hover {
+    text-decoration: none;
+}
+
+.hashLink:active {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+    .hashLinkWrapper {
+        width: 82px;
+        padding: 6px 0;
+    }
+
+    .hashLink {
+        font-size: 10px;
+    }
+}

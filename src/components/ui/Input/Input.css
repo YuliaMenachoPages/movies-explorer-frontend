@@ -1,0 +1,111 @@
+.input {
+    --additional-color: rgba(48, 48, 48, 1);
+    --secondary-text-color: rgba(139, 139, 139, 1);
+    --main-text-color: rgba(255, 255, 255, 1);
+    --border-color: rgba(66, 66, 66, 1);
+    --accent-color-pink: rgba(238, 52, 101, 1);
+}
+
+.inputField {
+    border-radius: 8px;
+    border: none;
+    color: var(--main-text-color);
+    background-color: var(--additional-color);
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    height: 46px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: 8px 0 14px 0;
+    cursor: pointer;
+}
+
+.inputField::placeholder {
+    color: var(--secondary-text-color);
+    opacity: 1;
+}
+
+.inputField:focus {
+    outline: 1px solid var(--border-color);
+}
+
+.inputField:invalid {
+    color: var(--accent-color-pink);
+}
+
+.inputField_kind_search {
+    height: 50px;
+    margin: 0 0 20px 0;
+}
+
+.inputField_kind_error {
+    color: var(--accent-color-pink);
+}
+
+.inputField_kind_profile {
+    background-color: transparent;
+    text-align: end;
+    font-size: 11px;
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    border-radius: 2px;
+
+}
+
+.inputField_kind_profile::placeholder {
+    color: var(--main-text-color);
+    opacity: 1;
+}
+
+.input__label {
+    color: var(--secondary-text-color);
+    font-family: Inter, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.input__errorWrapper {
+    overflow: hidden;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.input__error {
+    display: block;
+    border: none;
+    min-height: 12px;
+    color: var(--accent-color-pink);
+    font-family: Inter, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+
+    .inputField_kind_search {
+        height: 44px;
+    }
+}
