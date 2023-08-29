@@ -1,22 +1,92 @@
+import {useState} from "react";
 import './Register.css';
 import Input from "../../components/ui/Input/Input";
 import Button from "../../components/ui/Button/Button";
 import FormWrapper from "../../components/FormWrapper/FormWrapper";
 import NavLinkComp from "../../components/ui/NavLinkComp/NavLinkComp";
+import * as auth from '../../utils/MainApiAuth';
+import {useForm} from '../../hooks/useForm';
+import * as consts from '../../utils/Consts';
 
-function Register() {
+function Register(props) {
+
+    const [serverError, setServerError] = useState('');
+
+const {formValue, handleChange, errors, isValid, validityCodes} = useForm();
+
+    function handleSubmitRegister(e) {
+        e.preventDefault();
+        auth.register(formValue.name, formValue.email, formValue.password)
+            .then(() => {
+                props.handleSubmitLogin(formValue.email, formValue.password)
+            })
+            .catch((error) => {
+                if (error.status === 409) {
+                    setServerError('Пользователь с такой почтой уже существует.');
+                    return;
+                } else {
+                    setServerError('При регистрации произошла ошибка.');
+                }
+                setTimeout(() => {
+                    setServerError('');
+                }, 5000);
+            }
+            )
+             }
+
     return (
         <FormWrapper
             title={"Добро пожаловать!"}
-            button={<Button children={"Зарегистрироваться"} type={"button"}/>}
+            button={<Button children={"Зарегистрироваться"} type={"submit"} form={"register"} disabled={!isValid}/>}
             text={"Уже зарегистрированы?"}
             link={<NavLinkComp children={"Войти"} direction={"/signin"} kind={"blue"}/>}
+            id={"register"}
+            handleSubmit={handleSubmitRegister}
+            serverError={serverError}
         >
-            <Input labelText={"Имя"} errorText={""} inpId={"registerName"} type={"text"} minLength="2" maxLength="30"
-                   placeholder={"Имя"} required/>
-            <Input labelText={"E-mail"} inpId={"registerEmail"} type={"email"} placeholder={"Почта"} required/>
-            <Input labelText={"Пароль"} errorText={"error"} inpId={"registerPassword"} type={"password"} minLength="2"
-                   maxLength="30" placeholder={"Пароль"} required/>
+            <Input
+                name="name"
+                kind="form"
+                labelText="Имя"
+                errorText={validityCodes.name ? "Имя может содержать только латиницу, кириллицу, пробел или дефис" : errors.name}
+                inpId={"registerName"}
+                type={"text"}
+                placeholder={"Имя"}
+                value={formValue.name || ""}
+                onChange={handleChange}
+                pattern={consts.namePattern}
+                minLength={2}
+                maxLength={30}
+                required
+                />
+            <Input
+                name="email"
+
+                kind={"form"}
+                labelText={"E-mail"}
+                errorText={validityCodes.email ? "Введите корректный эмеил вида test@example.com" : errors.email}
+                inpId={"registerEmail"}
+                type={"email"}
+                placeholder={"Почта"}
+                value={formValue.email || ""}
+                onChange={handleChange}
+                pattern={consts.emailPattern}
+                required
+            />
+            <Input
+                name="password"
+                kind={"form"}
+                labelText={"Пароль"}
+                errorText={errors.password}
+                inpId={"registerPassword"}
+                type={"password"}
+                placeholder={"Пароль"}
+                value={formValue.password || ""}
+                onChange={handleChange}
+                minLength={6}
+                maxLength={30}
+                required
+                />
         </FormWrapper>
     )
 }

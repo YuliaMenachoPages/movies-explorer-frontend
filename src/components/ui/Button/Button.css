@@ -82,10 +82,7 @@
     padding: 0;
     margin: 0;
     background-color: transparent;
-}
-
-.button_type_saveProfile {
-    flex: 1 0 auto;
+    color: var(--accent-color-blue);
 }
 
 .button:not([disabled]):hover {
@@ -96,12 +93,16 @@
 .button:not([disabled]):active {
     opacity: 0.6;
     cursor: pointer;
-
 }
 
 .button:disabled {
     color: rgba(194, 194, 194, 1);
     background-color: rgba(248, 248, 248, 1);
+}
+
+.button_type_editProfile:disabled {
+    opacity: 0.8;
+    background-color: transparent;
 }
 
 @media screen and (max-width: 900px) {

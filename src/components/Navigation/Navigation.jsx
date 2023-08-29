@@ -3,12 +3,11 @@ import NavLinkComp from "../ui/NavLinkComp/NavLinkComp";
 import React from "react";
 import Burger from "../ui/Burger/Burger";
 
-function Navigation({children}) {
-    const loggedIn = true;
+function Navigation({children, ...props}) {
     return (
         <div className="navigation">
             {children}
-            {loggedIn ?
+            {props.loggedIn ?
                 <>
                     <nav className="navigation__wrapper hidden">
                         <ul className="navigation__list_loggedIn">
