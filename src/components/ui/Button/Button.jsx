@@ -1,7 +1,7 @@
 import React from "react";
 import './Button.css';
 
-function Button({kind, disabled, onClick, type, form, children}) {
+function Button({kind, disabled, onClick, type, form, children, ...props}) {
 
     return (
         <button

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './App.css';
 import {Route, Routes, useNavigate} from "react-router-dom";
+import ProtectedRouteElement from "../ProtectedRoute";
 import About from "../pages/About/About";
 import Movies from "../pages/Movies/Movies";
 import SavedMovies from "../pages/SavedMovies/SavedMovies";
@@ -58,6 +59,10 @@ function App() {
 
     function logOut() {
         localStorage.removeItem('token');
+        localStorage.removeItem('searchRequestMovies');
+        localStorage.removeItem('togglerStatus');
+        localStorage.removeItem('filteredMovies');
+        localStorage.removeItem('movies');
         setLoggedIn(false);
     }
 
@@ -90,10 +95,10 @@ function App() {
             <Routes>
                 <Route path="/" element={<Main loggedIn={loggedIn} logOut={logOut}/>}>
                     <Route index element={<About/>}/>
-                    <Route path="movies" element={<Movies/>}/>
-                    <Route path="saved-movies" element={<SavedMovies/>}/>
+                    <Route path="movies" element={<ProtectedRouteElement element={[Movies]}/>}/>
+                    <Route path="saved-movies" element={<ProtectedRouteElement element={[SavedMovies]}/>}/>
                 </Route>
-                <Route path="/profile" element={<Profile
+                <Route path="/profile" element={<ProtectedRouteElement element={[Profile]}
                     email={email}
                     name={name}
                     logOut={logOut}
@@ -103,9 +108,11 @@ function App() {
                 <Route path="/signin" element={<Login
                     handleSubmitLogin={handleSubmitLogin}
                     serverError={serverError}
+                    loggedIn={loggedIn}
                 />}/>
                 <Route path="/signup" element={<Register
                     handleSubmitLogin={handleSubmitLogin}
+                    loggedIn={loggedIn}
                 />}/>
                 <Route path="*" element={<Error/>}/>
             </Routes>

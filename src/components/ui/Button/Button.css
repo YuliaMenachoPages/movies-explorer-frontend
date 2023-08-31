@@ -70,6 +70,7 @@
 .button_type_search {
     width: 44px;
     aspect-ratio: 1;
+    background-color: var(--accent-color-blue);
     background-image: url("../../../images/find.svg");
     background-repeat: no-repeat;
     background-position: center;
@@ -103,6 +104,9 @@
 .button_type_editProfile:disabled {
     opacity: 0.8;
     background-color: transparent;
+}
+.button_type_search:disabled {
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 900px) {

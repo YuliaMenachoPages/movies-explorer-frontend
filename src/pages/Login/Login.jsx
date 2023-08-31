@@ -1,3 +1,5 @@
+import {useEffect} from "react";
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import Input from "../../components/ui/Input/Input";
 import Button from "../../components/ui/Button/Button";
@@ -8,12 +10,18 @@ import * as consts from '../../utils/Consts';
 
 function Login(props) {
     const {formValue, handleChange, errors, isValid, validityCodes} = useForm();
+    const navigate = useNavigate();
 
     function submitLogin(e) {
         e.preventDefault();
         props.handleSubmitLogin(formValue.email, formValue.password);
     }
 
+    useEffect(() => {
+        if (props.loggedIn) {
+            navigate('/movies');
+        }
+    }, [props.loggedIn, navigate]);
 
     return (
         <FormWrapper

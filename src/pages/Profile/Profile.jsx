@@ -14,7 +14,7 @@ import * as consts from '../../utils/Consts';
 
 function Profile(props) {
     const currentUser = useContext(CurrentUserContext);
-    const [name, setName] = useState(currentUser.name);
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const { handleChange, errors, isValid, validityCodes} = useForm();
     const [initialName, setInitialName ] = useState("");

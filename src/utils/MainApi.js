@@ -11,74 +11,52 @@ const serverUrl = 'http://localhost:3000';
         return res.json();
     }
 
-    getInitialCards() {
-        return fetch(`${this.initialUrl}/cards`, {
-            method: 'GET',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('token')}`,
-    'Content-Type': 'application/json; charset=UTF-8'
-            },
-        })
-            .then(res => this._getResponseData(res));
-    }
+     getInitialCards() {
+         return fetch(`${this.initialUrl}/movies`, {
+             method: 'GET',
+             headers: {
+                 authorization: `Bearer ${localStorage.getItem('token')}`,
+                 'Content-Type': 'application/json; charset=UTF-8'
+             },
+         })
+             .then(res => this._getResponseData(res));
+     }
 
-    addCard(cardData) {
-        return fetch(`${this.initialUrl}/cards`, {
-            method: 'POST',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify({
-                name: cardData.name,
-                link: cardData.link,
-            }),
-        })
-            .then(res => this._getResponseData(res));
-    }
+     saveMovie(movie) {
+         return fetch(`${this.initialUrl}/movies`, {
+             method: 'POST',
+             headers: {
+                 authorization: `Bearer ${localStorage.getItem('token')}`,
+                 'Content-Type': 'application/json; charset=UTF-8'
+             },
+             body: JSON.stringify({
+                 country: movie.country,
+                 director: movie.director,
+                 duration: movie.duration,
+                 year: movie.year,
+                 description: movie.description,
+                 image: movie.image,
+                 trailerLink: movie.trailerLink,
+                 thumbnail: movie.thumbnail,
+                 owner: movie.owner,
+                 movieId: movie.movieId,
+                 nameRU: movie.nameRU,
+                 nameEN: movie.nameEN
+             }),
+         })
+             .then(res => this._getResponseData(res));
+     }
 
-    addLike(cardId) {
-        return fetch(`${this.initialUrl}/cards/${cardId}/likes`, {
-            method: 'PUT',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-        })
-            .then(res => this._getResponseData(res));
-    }
-
-    deleteLike(cardId) {
-        return fetch(`${this.initialUrl}/cards/${cardId}/likes`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-        })
-            .then(res => this._getResponseData(res));
-    }
-
-    changeLikeCardStatus(cardId, isLiked) {
-        if (!isLiked) {
-            return this.addLike(cardId);
-        }
-        return this.deleteLike(cardId);
-    }
-
-    deleteCard(cardId) {
-        return fetch(`${this.initialUrl}/cards/${cardId}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-        })
-            .then(res => this._getResponseData(res))
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+     deleteMovie(id) {
+         return fetch(`${this.initialUrl}/movies/${id}`, {
+             method: 'DELETE',
+             headers: {
+                 authorization: `Bearer ${localStorage.getItem('token')}`,
+                 'Content-Type': 'application/json; charset=UTF-8'
+             },
+         })
+             .then(res => this._getResponseData(res));
+         }
 
     getUserData() {
         return fetch(`${this.initialUrl}/users/me`, {

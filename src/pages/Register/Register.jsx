@@ -1,4 +1,5 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 import Input from "../../components/ui/Input/Input";
 import Button from "../../components/ui/Button/Button";
@@ -13,7 +14,7 @@ function Register(props) {
     const [serverError, setServerError] = useState('');
 
 const {formValue, handleChange, errors, isValid, validityCodes} = useForm();
-
+const navigate = useNavigate();
     function handleSubmitRegister(e) {
         e.preventDefault();
         auth.register(formValue.name, formValue.email, formValue.password)
@@ -33,6 +34,12 @@ const {formValue, handleChange, errors, isValid, validityCodes} = useForm();
             }
             )
              }
+
+    useEffect(() => {
+        if (props.loggedIn) {
+            navigate('/movies');
+        }
+    }, [props.loggedIn, navigate]);
 
     return (
         <FormWrapper
