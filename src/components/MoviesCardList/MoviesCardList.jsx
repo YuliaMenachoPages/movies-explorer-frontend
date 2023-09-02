@@ -12,17 +12,16 @@ function MoviesCardList({children, ...props}) {
             <div className="moviesCardList__serverError">{props.serverError}</div>
             <ul className="moviesCardList__wrapper">
                 {props.filteredMovies?.map((movie) => (
-                    <MoviesCard key={`${props.keyPrefix}+${movie.movieId}`}
+                    <MoviesCard key={`${props.keyPrefix}${movie.movieId}`}
                                 movie={movie}
                                 saveError={props.saveError}
                                 handleDeleteFromSaved={props.handleDeleteFromSaved}
                                 handleAddToSaved={props.handleAddToSaved}
-                                savedMovieId={props.savedMovieId}
-                                deletedMovieId={props.deletedMovieId}
                                 saveErrorMovieId={props.saveErrorMovieId}
                                 searchError={props.searchError}
                                 errorId={props.errorId}
-
+                                setErrorId={props.setErrorId}
+                                savedMovies={props.savedMovies}
                     />
                 ))
                 }

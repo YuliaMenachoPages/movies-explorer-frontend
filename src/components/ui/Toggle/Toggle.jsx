@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 
 function Toggle() {
     const location = useLocation();
-    const [toggleValue, setToggleValue] = useState()
+    const [toggleValue, setToggleValue] = useState("")
     const {formValue, handleChange, errors, } = useForm();
 
     useEffect(() => {
@@ -24,7 +24,7 @@ function Toggle() {
     return (
         <fieldset className='toggle'>
             <label className="toggle__switch">
-                <input checked={toggleValue} type="checkbox" className="toggle__input" name="toggle" onChange={handleToggle}/>
+                <input checked type="checkbox" className="toggle__input" name="toggle" onChange={handleToggle}/>
                 <span className="toggle__slider"></span>
             </label>
             <p className="toggle__text">Короткометражки</p>

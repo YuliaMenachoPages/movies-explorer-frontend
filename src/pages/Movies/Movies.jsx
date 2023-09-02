@@ -14,8 +14,6 @@ function Movies() {
     const [saveError, setSaveError] = useState("");
     const [savedMovies, setSavedMovies] = useState("");
     // const [filteredMoviesData, setFilteredMoviesData] = useState([]);
-    const [savedMovieId, setSavedMovieId] = useState(null);
-    const [deletedMovieId, setDeletedMovieId] = useState(null);
     const [errorId, setErrorId] = useState('');
 
     useEffect(() => {
@@ -30,6 +28,7 @@ function Movies() {
                 setIsLoading(false);
             });
     }, []);
+
     function filterMovies(movies, search) {
         const searchResult = movies.filter(movie =>
             movie.nameRU.toLowerCase().includes(search) || movie.nameEN.toLowerCase().includes(search));
@@ -102,25 +101,19 @@ localStorage.setItem('filteredMovies', JSON.stringify(searchResult));
         api.saveMovie(movie)
             .then(savedMovie => {
                 setSavedMovies([...savedMovies, savedMovie]);
-                setSavedMovieId(savedMovie.movieId);
             })
             .catch(() => {
                 setSaveError('При сохранении фильма произошла ошибка');
             });
     };
 
-    const handleDeleteFromSaved = (movieId) => {
+    const handleDeleteFromSaved = (movieId, id) => {
         setErrorId(movieId)
-        api.deleteMovie(movieId)
+        api.deleteMovie(id)
             .then(() => {
-                console.log("deleteTest")
                 setSavedMovies(prevSavedMovies =>
                     prevSavedMovies.filter(movie => movie.movieId !== movieId)
                 );
-                // setFilteredMoviesData(prevFilteredMovies =>
-                //     prevFilteredMovies.filter(movie => movie.movieId !== movieId)
-                // );
-                setDeletedMovieId(movieId);
             })
             .catch(() => {
                 setSaveError('При удалении сохраненного фильма произошла ошибка');
@@ -139,11 +132,11 @@ localStorage.setItem('filteredMovies', JSON.stringify(searchResult));
                 serverError={serverError}
                 handleDeleteFromSaved={handleDeleteFromSaved}
                 handleAddToSaved={handleAddToSaved}
-                savedMovieId={savedMovieId}
-                deletedMovieId={deletedMovieId}
                 saveError={saveError}
                 errorId={errorId}
+                setErrorId={setErrorId}
                 key={"m"}
+                savedMovies={savedMovies}
             />
             <Button
                 children={"Ещё"}

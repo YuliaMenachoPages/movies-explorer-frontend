@@ -10,6 +10,8 @@ function SavedMovies() {
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchError, setSearchError] = useState("");
     const [serverError, setServerError] = useState('');
+    const [errorId, setErrorId] = useState('');
+    const [saveError, setSaveError] = useState("");
 
     useEffect(() => {
         setIsLoading(true);
@@ -25,52 +27,51 @@ function SavedMovies() {
             });
     }, []);
 
+    function filterMovies(search) {
+        const searchResult = savedMovies.filter(movie =>
+            movie.nameRU.toLowerCase().includes(search) || movie.nameEN.toLowerCase().includes(search));
+        setFilteredMovies(searchResult);
+        if (searchResult.length === 0) {
+            setSearchError('Ничего не найдено');
+        } else {
+            setSearchError("");
+        }
+        setIsLoading(false);
+    }
 
+    const handleSubmitMovies = (searchRequest) => {
+        filterMovies(searchRequest)
+    }
 
-             // if (savedSearchRequest) {
-            //     searchRef.current = savedSearchRequest;
-            // }
-            //
-            // if (savedShortFilmToggler) {
-            //     setShortFilmToggler(savedShortFilmToggler);
-            // }
-            //
-            // if (savedFilteredMovies) {
-            //     setFilteredMovies(JSON.parse(savedFilteredMovies));
-            // }
-
-            // const savedMovies = JSON.parse(localStorage.getItem('filteredMovies'));
-            // if (savedMovies) {
-            //     setMovies(savedMovies);
-            //     const filteredData = filterMovies(savedMovies, savedShortFilmToggler);
-            //     setFilteredMovies(filteredData);
-            // }
-
-    // const handleRemoveFromSavedMovies = (movieId) => {
-    //     api
-    //         .deleteCard(movieId)
-    //         .then(() => {
-    //             setSavedMovies(prevSavedMovies =>
-    //                 prevSavedMovies.filter(movie => movie._id !== movieId)
-    //             );
-    //             setFilteredMovies(prevFilteredMovies =>
-    //                 prevFilteredMovies.filter(movie => movie._id !== movieId)
-    //             );
-    //             setSelectedMovieId(movieId);
-    //         })
-    //         .catch(() => {
-    //             setError('Ошибка при удалении сохраненного фильма');
-    //         });
-    // };
+    const handleDeleteFromSaved = (movieId, id) => {
+        setErrorId(movieId)
+        api.deleteMovie(id)
+            .then(() => {
+                setSavedMovies(prevSavedMovies =>
+                    prevSavedMovies.filter(movie => movie.movieId !== movieId)
+                );
+                setFilteredMovies(movies =>
+                    movies.filter(movie => movie.movieId !== movieId)
+                );
+            })
+            .catch(() => {
+                setSaveError('При удалении сохраненного фильма произошла ошибка');
+            });
+    };
 
     return (
         <main className="savedMovies">
-            <SearchForm handleSubmitSearch={() => console.log("test")}/>
+            <SearchForm handleSubmitSearch={handleSubmitMovies}
+            />
             <MoviesCardList
                 serverError={serverError}
+                searchError={searchError}
                 isLoading={isLoading}
                 filteredMovies={filteredMovies}
                 keyPrefix={"sm"}
+                saveError={saveError}
+                errorId={errorId}
+                handleDeleteFromSaved={handleDeleteFromSaved}
             />
         </main>
     )

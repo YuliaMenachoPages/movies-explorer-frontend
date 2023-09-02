@@ -7,9 +7,11 @@ import Input from "../ui/Input/Input";
 import Toggle from "../ui/Toggle/Toggle";
 
 function SearchForm(props) {
-    const [searchValue, setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState("");
+    const [errorVisible, setErrorVisible] =useState(true);
     const location = useLocation();
     const {formValue, handleChange, errors, isValid} = useForm();
+
 
 
     useEffect(() => {
@@ -24,9 +26,13 @@ function SearchForm(props) {
         setSearchValue(e.target.value);
     };
 
+    function handleBlur() {
+        setErrorVisible(false);
+    }
     function handleSubmit(e) {
         e.preventDefault();
-                props.handleSubmitSearch(formValue.search);
+        setErrorVisible(true);
+        props.handleSubmitSearch(formValue.search);
         if (location.pathname === '/movies') {
             localStorage.setItem('searchRequestMovies', formValue.search);
         }
@@ -38,12 +44,13 @@ function SearchForm(props) {
                 <fieldset className="searchForm__bar">
                     < Input
                         name={"search"}
-                            errorText={errors.search && "Нужно ввести ключевое слово"}
+                            errorText={errors.search && errorVisible && "Нужно ввести ключевое слово"}
                             type={"text"}
                             kind={"search"}
                             inpId={"search"}
                             placeholder={"Фильм"}
                         onChange={handleSearch}
+                        onBlur={handleBlur}
                         value={searchValue || ""}
                             required/>
                     < Button kind={"search"} type={"submit"} form={"search"} disabled={!isValid}/>
