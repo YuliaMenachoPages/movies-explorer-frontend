@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './Movies.css';
 import SearchForm from "../../components/SearchForm/SearchForm";
 import MoviesCardList from "../../components/MoviesCardList/MoviesCardList";
@@ -7,23 +7,35 @@ import {moviesApi} from "../../utils/MoviesApi";
 import {api} from "../../utils/MainApi";
 
 function Movies() {
+    const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem('filteredMovies')));
     const [isLoading, setIsLoading] = useState(false);
     const [searchError, setSearchError] = useState("");
     const [serverError, setServerError] = useState("");
-    const [savedMovies, setSavedMovies] = useState("")
-    const [filteredMoviesData, setFilteredMoviesData] = useState([]);
-    const [selectedMovieId, setSelectedMovieId] = useState(null);
+    const [saveError, setSaveError] = useState("");
+    const [savedMovies, setSavedMovies] = useState("");
+    // const [filteredMoviesData, setFilteredMoviesData] = useState([]);
+    const [savedMovieId, setSavedMovieId] = useState(null);
+    const [deletedMovieId, setDeletedMovieId] = useState(null);
+    const [errorId, setErrorId] = useState('');
 
-
-    const filteredMovies = JSON.parse(localStorage.getItem('filteredMovies'));
-
-    function filterMovies(movies) {
-        const search = localStorage.getItem("searchRequestMovies")?.toLowerCase().trim();
-        console.log(search)
-        const filteredMovies = movies.filter(movie =>
+    useEffect(() => {
+        setIsLoading(true);
+        api.getInitialCards()
+            .then(savedMovies => {
+                setSavedMovies(savedMovies);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setServerError('При получении сохраненных фильмов произошла ошибка');
+                setIsLoading(false);
+            });
+    }, []);
+    function filterMovies(movies, search) {
+        const searchResult = movies.filter(movie =>
             movie.nameRU.toLowerCase().includes(search) || movie.nameEN.toLowerCase().includes(search));
-        localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
-        if (filteredMovies.length === 0) {
+setFilteredMovies(searchResult);
+localStorage.setItem('filteredMovies', JSON.stringify(searchResult));
+        if (searchResult.length === 0) {
             setSearchError('Ничего не найдено');
         } else {
             setSearchError("");
@@ -40,8 +52,36 @@ function Movies() {
         } else {
             moviesApi.getInitialMovies()
                 .then((data) => {
-                    localStorage.setItem('movies', JSON.stringify(data));
-                    filterMovies(data, searchRequest);
+                    localStorage.setItem('movies', JSON.stringify(
+                        data.map(movie => ({
+                            country: movie.country,
+                            director: movie.director,
+                            duration: movie.duration,
+                            year: movie.year,
+                            description: movie.description,
+                            image: `https://api.nomoreparties.co/${movie.image.url}`,
+                            trailerLink: movie.trailerLink,
+                            thumbnail: `https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`,
+                            owner: movie.owner,
+                            movieId: movie.id,
+                            nameRU: movie.nameRU,
+                            nameEN: movie.nameEN
+                        }))
+                    ));
+                    filterMovies(data.map(movie => ({
+                        country: movie.country,
+                        director: movie.director,
+                        duration: movie.duration,
+                        year: movie.year,
+                        description: movie.description,
+                        image: `https://api.nomoreparties.co/${movie.image.url}`,
+                        trailerLink: movie.trailerLink,
+                        thumbnail: `https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`,
+                        owner: movie.owner,
+                        movieId: movie.id,
+                        nameRU: movie.nameRU,
+                        nameEN: movie.nameEN
+                    })), searchRequest);
                 })
                 .catch(() => {
                     setServerError(`Во время запроса произошла ошибка. Возможно,
@@ -57,67 +97,54 @@ function Movies() {
         }
     }
 
-    const isSaved = false;
     const handleAddToSaved = (movie) => {
-        console.log(movie);
+        setErrorId(movie.movieId)
         api.saveMovie(movie)
             .then(savedMovie => {
-                console.log("saveTest")
                 setSavedMovies([...savedMovies, savedMovie]);
-                setSelectedMovieId(savedMovie.movieId);
+                setSavedMovieId(savedMovie.movieId);
             })
             .catch(() => {
-                setServerError('При сохранении фильма произошла ошибка');
-    setTimeout(() => {
-        setServerError('');
-    }, 5000);
+                setSaveError('При сохранении фильма произошла ошибка');
             });
     };
 
     const handleDeleteFromSaved = (movieId) => {
+        setErrorId(movieId)
         api.deleteMovie(movieId)
             .then(() => {
                 console.log("deleteTest")
                 setSavedMovies(prevSavedMovies =>
-                    prevSavedMovies.filter(movie => movie._id !== movieId)
+                    prevSavedMovies.filter(movie => movie.movieId !== movieId)
                 );
-                setFilteredMoviesData(prevFilteredMovies =>
-                    prevFilteredMovies.filter(movie => movie._id !== movieId)
-                );
-                setSelectedMovieId(movieId);
+                // setFilteredMoviesData(prevFilteredMovies =>
+                //     prevFilteredMovies.filter(movie => movie.movieId !== movieId)
+                // );
+                setDeletedMovieId(movieId);
             })
             .catch(() => {
-                setServerError('При удалении сохраненного фильма произошла ошибка');
-                setTimeout(() => {
-                    setServerError('');
-                }, 5000);
+                setSaveError('При удалении сохраненного фильма произошла ошибка');
             });
     };
 
     return (
         <main className="movies">
             <SearchForm
-                handleSubmitSearch={handleSubmitMovies}/>
+                handleSubmitSearch={handleSubmitMovies}
+            />
             <MoviesCardList
                 isLoading={isLoading}
-                movies={filteredMovies}
+                filteredMovies={filteredMovies}
                 searchError={searchError}
                 serverError={serverError}
                 handleDeleteFromSaved={handleDeleteFromSaved}
                 handleAddToSaved={handleAddToSaved}
-                children={isSaved ?
-                    <Button
-                        kind={"saved"}
-                        type={"button"}
-                        onClick={(props) => {handleDeleteFromSaved(props.movie)}}
-                    /> :
-                    <Button
-                        kind={"save"}
-                        type={"button"}
-                        children={"Сохранить"}
-                        // onClick={onDelete}
-                    />}
-                />
+                savedMovieId={savedMovieId}
+                deletedMovieId={deletedMovieId}
+                saveError={saveError}
+                errorId={errorId}
+                key={"m"}
+            />
             <Button
                 children={"Ещё"}
                 type={"button"}

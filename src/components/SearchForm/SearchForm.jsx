@@ -17,7 +17,7 @@ function SearchForm(props) {
             setSearchValue(localStorage.getItem('searchRequestMovies'));
         }
 
-    },[] );
+    }, []);
 
     function handleSearch(e) {
     handleChange(e);
@@ -30,11 +30,7 @@ function SearchForm(props) {
         if (location.pathname === '/movies') {
             localStorage.setItem('searchRequestMovies', formValue.search);
         }
-        if (location.pathname === '/saved-movies') {
-            localStorage.setItem('searchRequestSavedMovies', formValue.search);
-        }
     }
-
 
     return (
         <section>
@@ -42,7 +38,7 @@ function SearchForm(props) {
                 <fieldset className="searchForm__bar">
                     < Input
                         name={"search"}
-                            errorText={errors.search}
+                            errorText={errors.search && "Нужно ввести ключевое слово"}
                             type={"text"}
                             kind={"search"}
                             inpId={"search"}

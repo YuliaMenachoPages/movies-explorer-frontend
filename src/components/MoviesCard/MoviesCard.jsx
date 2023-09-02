@@ -1,8 +1,49 @@
+import {useState, useEffect} from 'react';
 import './MoviesCard.css';
-import {Children, cloneElement} from "react";
-import {logDOM} from "@testing-library/react";
 import Button from "../ui/Button/Button";
+import {useLocation} from "react-router-dom";
 function MoviesCard({children, ...props}) {
+    const location = useLocation();
+    const [isSaved, setIsSaved] = useState(false);
+    const [showError, setShowError] = useState(false);
+
+
+    // useEffect(() => {
+    //     if (location.pathname === '/movies') {
+    //         const isMovieSaved = props.savedMovies.some(savedMovie => savedMovie.movieId === props.movieId);
+    //         setIsSaved(isMovieSaved);
+    //
+    //         if (isMovieSaved) {
+    //             const savedMovie = props.savedMovies.find(savedMovie => savedMovie.movieId === props.movieId);
+    //             setIsSaved(savedMovie._id);
+    //         }
+    //     }
+    // }, [props.savedMovies, props.movieId, location.pathname]);
+
+    useEffect(() => {
+        if (location.pathname === '/movies') {
+           if (props.movie.movieId === props.savedMovieId) {
+               setIsSaved(true);
+           }
+        }
+    }, )
+
+    useEffect(() => {
+        if (location.pathname === '/movies') {
+            if (props.movie.movieId === props.deletedMovieId) {
+                setIsSaved(false);
+            }
+        }
+    }, )
+
+    useEffect(() => {
+            if (props.movie.movieId === props.errorId) {
+                setShowError(true);
+                setTimeout(() => {
+                    setShowError(false);
+                }, 1500);
+            }
+    }, [props.errorId])
 
     function countDuration (duration) {
         if (duration < 60) return `${duration}м`
@@ -11,21 +52,43 @@ function MoviesCard({children, ...props}) {
     }
 
     function onDelete() {
-        // props.handleDeleteFromSaved(props.movie)
-        console.log("testondelete")
-        console.log(props.movie)
+        props.handleDeleteFromSaved(props.movie.movieId);
     }
-    const movie = "fuck"
+    function onSave() {
+        props.handleAddToSaved(props.movie);
+    }
+
     return (
         <li className="moviesCard">
-            {children}
+            {showError && props.saveError && <span className="moviesCard__saveError">{props.saveError}</span>}
+            {location.pathname === '/movies' ? <>
+                {isSaved ?
+            <Button
+                kind={"saved"}
+                type={"button"}
+                onClick={onDelete}
+            /> :
+            <Button
+                kind={"save"}
+                type={"button"}
+                children={"Сохранить"}
+                onClick={onSave}
+            />} </> :
+                <Button
+                kind={"delete"}
+                type={"button"}
+                onClick={onDelete}
+                />
+}
             <div className="moviesCard__imgWrapper">
                 <a className="moviesCard__link" href={props.movie.trailerLink} target="_blank" rel="noopener noreferrer">
                 <img src={props.movie.image} alt={`Постер к фильму ${props.movie.nameRU}`} className="moviesCard__img"/>
                 </a>
             </div>
             <div className="moviesCard__info">
+                <div className="moviesCard__headerWrapper">
                 <h2 className="moviesCard__title">{props.movie.nameRU}</h2>
+                </div>
                 <div className="moviesCard__durationWrapper">
                     <p className="moviesCard__duration">{countDuration(props.movie.duration)}</p>
                 </div>

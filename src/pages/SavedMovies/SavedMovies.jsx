@@ -1,32 +1,33 @@
 import './SavedMovies.css';
 import SearchForm from "../../components/SearchForm/SearchForm";
 import MoviesCardList from "../../components/MoviesCardList/MoviesCardList";
-import Button from "../../components/ui/Button/Button";
 import {useEffect, useState} from "react";
 import {api} from "../../utils/MainApi";
 
-function SavedMovies(props) {
+function SavedMovies() {
     const [savedMovies, setSavedMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [filteredMovies, setFilteredMovies] = useState([]);
+    const [searchError, setSearchError] = useState("");
     const [serverError, setServerError] = useState('');
-    const [shortFilmToggler, setShortFilmToggler] = useState(false);
-
 
     useEffect(() => {
-            api.getInitialCards()
-                .then((data) => {
-                    setSavedMovies(data);
-                    console.log(data)
-                })
-                .catch(() => {
-                    setServerError('Ошибка при получении сохраненных фильмов');
-                });
-            const savedSearchRequest = localStorage.getItem('searchRequestSavedMovies');
-            // const savedShortFilmToggler = localStorage.getItem('shortFilmToggler') === 'true';
-            // const savedFilteredMovies = localStorage.getItem('filteredMovies');
-            //
-            // if (savedSearchRequest) {
+        setIsLoading(true);
+        api.getInitialCards()
+            .then(savedMovies => {
+                setSavedMovies(savedMovies);
+                setFilteredMovies(savedMovies);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setServerError('При получении сохраненных фильмов произошла ошибка');
+                setIsLoading(false);
+            });
+    }, []);
+
+
+
+             // if (savedSearchRequest) {
             //     searchRef.current = savedSearchRequest;
             // }
             //
@@ -44,7 +45,6 @@ function SavedMovies(props) {
             //     const filteredData = filterMovies(savedMovies, savedShortFilmToggler);
             //     setFilteredMovies(filteredData);
             // }
-    }, [props.loggedIn]);
 
     // const handleRemoveFromSavedMovies = (movieId) => {
     //     api
@@ -65,8 +65,13 @@ function SavedMovies(props) {
 
     return (
         <main className="savedMovies">
-            <SearchForm handleSubmitSearch={() => console.log("SMsearchtest")}/>
-            <MoviesCardList serverError={serverError} isLoading={isLoading} movies={savedMovies} children={<Button kind={"delete"} type={"button"}/>}/>
+            <SearchForm handleSubmitSearch={() => console.log("test")}/>
+            <MoviesCardList
+                serverError={serverError}
+                isLoading={isLoading}
+                filteredMovies={filteredMovies}
+                keyPrefix={"sm"}
+            />
         </main>
     )
 }

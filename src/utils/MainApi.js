@@ -29,20 +29,7 @@ const serverUrl = 'http://localhost:3000';
                  authorization: `Bearer ${localStorage.getItem('token')}`,
                  'Content-Type': 'application/json; charset=UTF-8'
              },
-             body: JSON.stringify({
-                 country: movie.country,
-                 director: movie.director,
-                 duration: movie.duration,
-                 year: movie.year,
-                 description: movie.description,
-                 image: movie.image,
-                 trailerLink: movie.trailerLink,
-                 thumbnail: movie.thumbnail,
-                 owner: movie.owner,
-                 movieId: movie.movieId,
-                 nameRU: movie.nameRU,
-                 nameEN: movie.nameEN
-             }),
+             body: JSON.stringify(movie),
          })
              .then(res => this._getResponseData(res));
      }
