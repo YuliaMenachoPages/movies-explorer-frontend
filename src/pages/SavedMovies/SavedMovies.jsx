@@ -12,6 +12,7 @@ function SavedMovies() {
     const [serverError, setServerError] = useState('');
     const [errorId, setErrorId] = useState('');
     const [saveError, setSaveError] = useState("");
+    const [searchedMovies, setSearchedMovies] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -20,6 +21,7 @@ function SavedMovies() {
                 setSavedMovies(savedMovies);
                 setFilteredMovies(savedMovies);
                 setIsLoading(false);
+                setSearchedMovies(savedMovies);
             })
             .catch(() => {
                 setServerError('При получении сохраненных фильмов произошла ошибка');
@@ -27,20 +29,47 @@ function SavedMovies() {
             });
     }, []);
 
-    function filterMovies(search) {
-        const searchResult = savedMovies.filter(movie =>
-            movie.nameRU.toLowerCase().includes(search) || movie.nameEN.toLowerCase().includes(search));
-        setFilteredMovies(searchResult);
-        if (searchResult.length === 0) {
-            setSearchError('Ничего не найдено');
+    function handleToggle(isChecked) {
+        if (isChecked) {
+            const toggleResult = searchedMovies.filter(movie => movie.duration <= 40);
+            setFilteredMovies(toggleResult);
+            if (toggleResult.length === 0) {
+                setSearchError('Ничего не найдено');
+            } else {
+                setSearchError("");
+            }
         } else {
+            setFilteredMovies(searchedMovies);
             setSearchError("");
         }
-        setIsLoading(false);
     }
 
-    const handleSubmitMovies = (searchRequest) => {
-        filterMovies(searchRequest)
+    function filterMovies(search, isChecked) {
+        const searchResult = savedMovies.filter(movie =>
+            movie.nameRU.toLowerCase().includes(search) || movie.nameEN.toLowerCase().includes(search));
+
+        setSearchedMovies(searchResult);
+        if (isChecked) {
+            const toggleResult = searchResult.filter(movie => movie.duration <= 40);
+            setFilteredMovies(toggleResult);
+            if (toggleResult.length === 0) {
+                setSearchError('Ничего не найдено');
+            } else {
+                setSearchError("");
+            }
+        } else {
+            setFilteredMovies(searchResult);
+            if (searchResult.length === 0) {
+                setSearchError('Ничего не найдено');
+            } else {
+                setSearchError("");
+            }
+            setIsLoading(false);
+        }
+    }
+
+    const handleSubmitMovies = (searchRequest, isChecked) => {
+        filterMovies(searchRequest, isChecked)
     }
 
     const handleDeleteFromSaved = (movieId, id) => {
@@ -62,6 +91,7 @@ function SavedMovies() {
     return (
         <main className="savedMovies">
             <SearchForm handleSubmitSearch={handleSubmitMovies}
+                        handleToggle={handleToggle}
             />
             <MoviesCardList
                 serverError={serverError}

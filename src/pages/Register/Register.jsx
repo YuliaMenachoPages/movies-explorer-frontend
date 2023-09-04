@@ -12,11 +12,14 @@ import * as consts from '../../utils/Consts';
 function Register(props) {
 
     const [serverError, setServerError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-const {formValue, handleChange, errors, isValid, validityCodes} = useForm();
+
+    const {formValue, handleChange, errors, isValid, validityCodes} = useForm();
 const navigate = useNavigate();
     function handleSubmitRegister(e) {
         e.preventDefault();
+        setIsSubmitting(true);
         auth.register(formValue.name, formValue.email, formValue.password)
             .then(() => {
                 props.handleSubmitLogin(formValue.email, formValue.password)
@@ -33,6 +36,9 @@ const navigate = useNavigate();
                 }, 5000);
             }
             )
+            .finally(() => {
+                setIsSubmitting(false);
+            })
              }
 
     useEffect(() => {
@@ -44,7 +50,7 @@ const navigate = useNavigate();
     return (
         <FormWrapper
             title={"Добро пожаловать!"}
-            button={<Button children={"Зарегистрироваться"} type={"submit"} form={"register"} disabled={!isValid}/>}
+            button={<Button children={"Зарегистрироваться"} type={"submit"} form={"register"} disabled={!isValid && !isSubmitting}/>}
             text={"Уже зарегистрированы?"}
             link={<NavLinkComp children={"Войти"} direction={"/signin"} kind={"blue"}/>}
             id={"register"}
@@ -61,7 +67,7 @@ const navigate = useNavigate();
                 placeholder={"Имя"}
                 value={formValue.name || ""}
                 onChange={handleChange}
-                pattern={consts.namePattern}
+                pattern={consts.NAME_PATTERN}
                 minLength={2}
                 maxLength={30}
                 required
@@ -77,7 +83,7 @@ const navigate = useNavigate();
                 placeholder={"Почта"}
                 value={formValue.email || ""}
                 onChange={handleChange}
-                pattern={consts.emailPattern}
+                pattern={consts.EMAIL_PATTERN}
                 required
             />
             <Input

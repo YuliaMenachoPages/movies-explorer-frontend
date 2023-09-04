@@ -23,6 +23,7 @@ function Profile(props) {
     const [success, setSuccess] = useState('');
     const [nameChange, setNameChange] = useState(false);
     const [emailChange, setEmailChange] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
 
     useEffect(() => {
@@ -46,12 +47,13 @@ function Profile(props) {
 
     function handleUpdateUser(e) {
         e.preventDefault();
-        console.log(name, email)
+        setIsSubmitting(true);
         api.changeUserData({name, email})
-            .then(() => {
+            .then((res) => {
                 setSuccess('Данные успешно обновлены');
                 setNameChange(false);
                 setEmailChange(false);
+                props.setCurrentUser(res)
                 setTimeout(() => {
                     setSuccess('');
                 }, 5000);
@@ -63,6 +65,9 @@ function Profile(props) {
                     }, 5000);
                 }
             )
+            .finally(() => {
+                setIsSubmitting(false);
+            })
     }
 
     return (
@@ -84,7 +89,7 @@ function Profile(props) {
                                     placeholder={"Имя"}
                                     value={name || ""}
                                     onChange={handleNameChange}
-                                    pattern={consts.namePattern}
+                                    pattern={consts.NAME_PATTERN}
                                     minLength={2}
                                     maxLength={30}
                                     required
@@ -101,7 +106,7 @@ function Profile(props) {
                                     placeholder={"Почта"}
                                     value={email || ""}
                                     onChange={handleEmailChange}
-                                    pattern={consts.emailPattern}
+                                    pattern={consts.EMAIL_PATTERN}
                                     required
                                 />
                             </div>
@@ -110,7 +115,7 @@ function Profile(props) {
                     <div className="profile__buttons">
                         <span className="profile__success">{ success }</span>
                         <span className="profile__error">{ serverError }</span>
-                                < Button type={"submit"} kind={"editProfile"} form={"profile"} children={"Редактировать"} disabled={!(isValid && (nameChange || emailChange))}/>
+                                < Button type={"submit"} kind={"editProfile"} form={"profile"} children={"Редактировать"} disabled={!(isValid && (nameChange || emailChange)) && !isSubmitting}/>
                                 < NavLinkComp children={"Выйти из аккаунта"} direction={"/"} kind={"profile"} onClick={props.logOut}/>
                     </div>
                 </section>

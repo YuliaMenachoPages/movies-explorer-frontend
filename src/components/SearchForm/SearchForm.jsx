@@ -8,33 +8,32 @@ import Toggle from "../ui/Toggle/Toggle";
 
 function SearchForm(props) {
     const [searchValue, setSearchValue] = useState("");
-    const [errorVisible, setErrorVisible] =useState(true);
+    const [errorVisible, setErrorVisible] = useState(false);
     const location = useLocation();
-    const {formValue, handleChange, errors, isValid} = useForm();
-
-
+    const {formValue, handleChange,} = useForm();
+    const [togglerStatus, setTogglerStatus] = useState(false);
 
     useEffect(() => {
         if (location.pathname === '/movies') {
             setSearchValue(localStorage.getItem('searchRequestMovies'));
         }
-
     }, []);
 
     function handleSearch(e) {
     handleChange(e);
         setSearchValue(e.target.value);
-    };
-
-    function handleBlur() {
         setErrorVisible(false);
     }
+
     function handleSubmit(e) {
         e.preventDefault();
-        setErrorVisible(true);
-        props.handleSubmitSearch(formValue.search);
-        if (location.pathname === '/movies') {
-            localStorage.setItem('searchRequestMovies', formValue.search);
+        if (!formValue.search) {
+            setErrorVisible(true);
+        } else {
+            props.handleSubmitSearch(formValue.search.toLowerCase().trim(), togglerStatus);
+            if (location.pathname === '/movies') {
+                localStorage.setItem('searchRequestMovies', formValue.search.toLowerCase().trim());
+            }
         }
     }
 
@@ -44,19 +43,25 @@ function SearchForm(props) {
                 <fieldset className="searchForm__bar">
                     < Input
                         name={"search"}
-                            errorText={errors.search && errorVisible && "Нужно ввести ключевое слово"}
+                            errorText={errorVisible && "Нужно ввести ключевое слово"}
                             type={"text"}
                             kind={"search"}
                             inpId={"search"}
                             placeholder={"Фильм"}
                         onChange={handleSearch}
-                        onBlur={handleBlur}
                         value={searchValue || ""}
-                            required/>
-                    < Button kind={"search"} type={"submit"} form={"search"} disabled={!isValid}/>
+                            />
+                    < Button kind={"search"} type={"submit"} form={"search"} disabled={props.isSubmitting}/>
                 </fieldset>
                 <div className="searchForm__toggleWrapper">
-                    < Toggle/>
+                    < Toggle
+                    togglerStatus={togglerStatus}
+                    setTogglerStatus={setTogglerStatus}
+                    searchedMovies={props.searchedMovies}
+                    filteredMovies={props.filteredMovies}
+                    setFilteredMovies={props.setFilteredMovies}
+                    handleToggle={props.handleToggle}
+                    />
                 </div>
             </form>
         </section>

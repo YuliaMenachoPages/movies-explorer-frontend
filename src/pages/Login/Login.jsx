@@ -26,7 +26,7 @@ function Login(props) {
     return (
         <FormWrapper
             title={"Рады видеть!"}
-            button={<Button type={"submit"} children={"Войти"} form={"login"} disabled={!isValid}/>}
+            button={<Button type={"submit"} children={"Войти"} form={"login"} disabled={!isValid && !props.isSubmitting}/>}
             text={"Еще не зарегистрированы?"}
             link={<NavLinkComp children={"Регистрация"} direction={"/signup"} kind={"blue"}/>}
             id={"login"}
@@ -43,7 +43,7 @@ function Login(props) {
                 placeholder={"Почта"}
                 value={formValue.email || ""}
                 onChange={handleChange}
-                pattern={consts.emailPattern}
+                pattern={consts.EMAIL_PATTERN}
                 required
             />
             <Input

@@ -8,8 +8,8 @@ function MoviesCardList({children, ...props}) {
     return (
         <section className="moviesCardList">
             {props.isLoading && <Preloader /> }
-            <div className="moviesCardList__searchError">{props.searchError}</div>
-            <div className="moviesCardList__serverError">{props.serverError}</div>
+            {props.searchError && <div className="moviesCardList__searchError">{props.searchError}</div>}
+            {props.serverError && <div className="moviesCardList__serverError">{props.serverError}</div>}
             <ul className="moviesCardList__wrapper">
                 {props.filteredMovies?.map((movie) => (
                     <MoviesCard key={`${props.keyPrefix}${movie.movieId}`}
@@ -22,6 +22,10 @@ function MoviesCardList({children, ...props}) {
                                 errorId={props.errorId}
                                 setErrorId={props.setErrorId}
                                 savedMovies={props.savedMovies}
+                                searchedMovies={props.searchedMovies}
+                                filteredMovies={props.filteredMovies}
+                                setFilteredMovies={props.setFilteredMovies}
+                                isSubmitting={props.isSubmitting}
                     />
                 ))
                 }

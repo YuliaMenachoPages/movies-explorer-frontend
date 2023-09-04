@@ -7,6 +7,7 @@ function MoviesCard({children, ...props}) {
     const [isSaved, setIsSaved] = useState(false);
     const [deleteId, setDeleteId] = useState(props.movie._id);
     const [showError, setShowError] = useState(false);
+    const [buttonBlock, setButtonBlock] = useState(false);
 
 
     useEffect(() => {
@@ -31,6 +32,7 @@ function MoviesCard({children, ...props}) {
 
     useEffect(() => {
             if (props.movie.movieId === props.errorId) {
+                setButtonBlock(true);
                 setShowError(true);
                 setTimeout(() => {
                     setShowError(false);
@@ -60,17 +62,20 @@ function MoviesCard({children, ...props}) {
                 kind={"saved"}
                 type={"button"}
                 onClick={onDelete}
+                disabled={props.isSubmitting && buttonBlock}
             /> :
             <Button
                 kind={"save"}
                 type={"button"}
                 children={"Сохранить"}
                 onClick={onSave}
+                disabled={props.isSubmitting && buttonBlock}
             />} </> :
                 <Button
                 kind={"delete"}
                 type={"button"}
                 onClick={onDelete}
+                disabled={props.isSubmitting && buttonBlock}
                 />
 }
             <div className="moviesCard__imgWrapper">

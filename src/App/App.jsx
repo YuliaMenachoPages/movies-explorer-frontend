@@ -22,6 +22,7 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [serverError, setServerError] = useState('');
     const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         handleTokenCheck();
@@ -67,6 +68,7 @@ function App() {
     }
 
     const handleSubmitLogin = (email, password) => {
+            setIsSubmitting(true);
         auth.login(email, password)
             .then((data) => {
                     if (data) {
@@ -87,6 +89,9 @@ function App() {
                 }, 5000);
             }
             )
+            .finally(() => {
+                setIsSubmitting(false);
+            })
     }
 
     return (
@@ -104,11 +109,13 @@ function App() {
                     logOut={logOut}
                     loggedIn={loggedIn}
                     serverError={serverError}
+                    setCurrentUser={setCurrentUser}
                 />}/>
                 <Route path="/signin" element={<Login
                     handleSubmitLogin={handleSubmitLogin}
                     serverError={serverError}
                     loggedIn={loggedIn}
+                    isSubmitting={isSubmitting}
                 />}/>
                 <Route path="/signup" element={<Register
                     handleSubmitLogin={handleSubmitLogin}
