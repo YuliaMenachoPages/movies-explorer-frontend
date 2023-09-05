@@ -1,5 +1,5 @@
-import {useState, useEffect} from "react";
-import { useNavigate } from 'react-router-dom';
+import {useEffect, useState} from "react";
+import {useNavigate} from 'react-router-dom';
 import './Register.css';
 import Input from "../../components/ui/Input/Input";
 import Button from "../../components/ui/Button/Button";
@@ -16,7 +16,8 @@ function Register(props) {
 
 
     const {formValue, handleChange, errors, isValid, validityCodes} = useForm();
-const navigate = useNavigate();
+    const navigate = useNavigate();
+
     function handleSubmitRegister(e) {
         e.preventDefault();
         setIsSubmitting(true);
@@ -25,21 +26,21 @@ const navigate = useNavigate();
                 props.handleSubmitLogin(formValue.email, formValue.password)
             })
             .catch((error) => {
-                if (error.status === 409) {
-                    setServerError('Пользователь с такой почтой уже существует.');
-                    return;
-                } else {
-                    setServerError('При регистрации произошла ошибка.');
+                    if (error.status === 409) {
+                        setServerError('Пользователь с такой почтой уже существует.');
+                        return;
+                    } else {
+                        setServerError('При регистрации произошла ошибка.');
+                    }
+                    setTimeout(() => {
+                        setServerError('');
+                    }, 5000);
                 }
-                setTimeout(() => {
-                    setServerError('');
-                }, 5000);
-            }
             )
             .finally(() => {
                 setIsSubmitting(false);
             })
-             }
+    }
 
     useEffect(() => {
         if (props.loggedIn) {
@@ -50,7 +51,8 @@ const navigate = useNavigate();
     return (
         <FormWrapper
             title={"Добро пожаловать!"}
-            button={<Button children={"Зарегистрироваться"} type={"submit"} form={"register"} disabled={!isValid && !isSubmitting}/>}
+            button={<Button children={"Зарегистрироваться"} type={"submit"} form={"register"}
+                            disabled={!isValid && !isSubmitting}/>}
             text={"Уже зарегистрированы?"}
             link={<NavLinkComp children={"Войти"} direction={"/signin"} kind={"blue"}/>}
             id={"register"}
@@ -71,7 +73,7 @@ const navigate = useNavigate();
                 minLength={2}
                 maxLength={30}
                 required
-                />
+            />
             <Input
                 name="email"
 
@@ -99,7 +101,7 @@ const navigate = useNavigate();
                 minLength={6}
                 maxLength={30}
                 required
-                />
+            />
         </FormWrapper>
     )
 }

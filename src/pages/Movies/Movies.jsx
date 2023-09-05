@@ -5,7 +5,7 @@ import MoviesCardList from "../../components/MoviesCardList/MoviesCardList";
 import Button from "../../components/ui/Button/Button";
 import {moviesApi} from "../../utils/MoviesApi";
 import {api} from "../../utils/MainApi";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
+import {useMediaQuery} from "../../hooks/useMediaQuery";
 import * as consts from "../../utils/Consts";
 
 function Movies() {
@@ -24,16 +24,7 @@ function Movies() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
 
-    useEffect(() => {
-        console.log("cards:"+cards);
-        console.log("btn"+moreButton);
-        console.log("isD:"+isDesktop);
-        console.log("isT:"+isTablet);
-        console.log("columns:"+getCardColumnCount());
-        console.log("initial:"+getInitialCardCount());
-    })
-
-    useEffect(() => {
+     useEffect(() => {
         setIsLoading(true);
         api.getInitialCards()
             .then(savedMovies => {
@@ -58,7 +49,7 @@ function Movies() {
             const toggleResult = searchedMovies.filter(movie => movie.duration <= 40);
             setFilteredMovies(toggleResult);
             localStorage.setItem('filteredMovies', JSON.stringify(toggleResult));
-            if (toggleResult) {
+            if (toggleResult.length === 0 ) {
                 setSearchError('Ничего не найдено');
             } else {
                 setSearchError("");
@@ -66,7 +57,11 @@ function Movies() {
         } else {
             setFilteredMovies(searchedMovies);
             localStorage.setItem('filteredMovies', JSON.stringify(searchedMovies));
-            setSearchError("");
+            if (searchedMovies.length === 0) {
+                setSearchError('Ничего не найдено');
+            } else {
+                setSearchError("");
+            }
         }
     }
 
@@ -96,7 +91,7 @@ function Movies() {
         setIsLoading(false);
     }
 
-     const handleSubmitMovies = (searchRequest, isChecked) => {
+    const handleSubmitMovies = (searchRequest, isChecked) => {
         setIsLoading(true);
         setCards(getInitialCardCount());
         setIsSubmitting(true);
@@ -185,14 +180,15 @@ function Movies() {
     };
 
 //Функционал кнопки "Ещё"
-             function getCardColumnCount() {
-           const cardColumnCount = isDesktop
-               ? consts.LG_ROW_CARD_COUNT
-               : isTablet
-                   ? consts.MD_ROW_CARD_COUNT
-                   : consts.SM_ROW_CARD_COUNT;
-           return cardColumnCount
-       }
+    function getCardColumnCount() {
+        const cardColumnCount = isDesktop
+            ? consts.LG_ROW_CARD_COUNT
+            : isTablet
+                ? consts.MD_ROW_CARD_COUNT
+                : consts.SM_ROW_CARD_COUNT;
+        return cardColumnCount
+    }
+
     function getInitialCardCount() {
         const initialCardCount = isDesktop
             ? consts.LG_INITIAL_CARD_COUNT
@@ -200,11 +196,10 @@ function Movies() {
                 ? consts.MD_INITIAL_CARD_COUNT
                 : consts.SM_INITIAL_CARD_COUNT;
         return initialCardCount
-       }
+    }
 
     const handleClickMore = () => {
         setCards(cards + getCardColumnCount());
-        console.log("test")
     };
 
     const updateMoreButton = (cardsCount) => {
@@ -229,7 +224,7 @@ function Movies() {
         handleResize()
     }, [getInitialCardCount()])
 
-       return (
+    return (
         <main className="movies">
             <SearchForm
                 handleSubmitSearch={handleSubmitMovies}
@@ -257,8 +252,8 @@ function Movies() {
                 children={"Ещё"}
                 type={"button"}
                 kind={"more"}
-            onClick={handleClickMore}
-            /> }
+                onClick={handleClickMore}
+            />}
         </main>
     )
 }

@@ -4,6 +4,7 @@
     --main-text-color: rgba(255, 255, 255, 1);
     --border-color: rgba(66, 66, 66, 1);
     --accent-color-pink: rgba(238, 52, 101, 1);
+    position: relative;
 }
 
 .input_kind_form {
@@ -104,11 +105,17 @@
     text-wrap: normal;
 }
 
+.input__errorWrapper_kind_profile {
+    overflow: hidden;
+    margin: 0;
+}
+
 @media screen and (max-width: 600px) {
 
     .input_kind_form {
         width: calc(100vw - 60px);
     }
+
     .inputField_kind_search {
         height: 44px;
     }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import './App.css';
 import {Route, Routes, useNavigate} from "react-router-dom";
 import ProtectedRouteElement from "../ProtectedRoute";
@@ -52,7 +52,8 @@ function App() {
                 })
                 .catch((err) => console.log(err));
 
-        }}, [loggedIn]);
+        }
+    }, [loggedIn]);
 
     function handleLogin() {
         setLoggedIn(true);
@@ -68,7 +69,7 @@ function App() {
     }
 
     const handleSubmitLogin = (email, password) => {
-            setIsSubmitting(true);
+        setIsSubmitting(true);
         auth.login(email, password)
             .then((data) => {
                     if (data) {
@@ -78,16 +79,16 @@ function App() {
                 }
             )
             .catch((error) => {
-                if (error.status === 401) {
-                    setServerError('Вы ввели неправильный логин или пароль.');
-                    return;
-                } else {
-                    setServerError('При авторизации произошла ошибка.');
+                    if (error.status === 401) {
+                        setServerError('Вы ввели неправильный логин или пароль.');
+                        return;
+                    } else {
+                        setServerError('При авторизации произошла ошибка.');
+                    }
+                    setTimeout(() => {
+                        setServerError('');
+                    }, 5000);
                 }
-                setTimeout(() => {
-                    setServerError('');
-                }, 5000);
-            }
             )
             .finally(() => {
                 setIsSubmitting(false);
@@ -96,34 +97,34 @@ function App() {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-        <div className="app">
-            <Routes>
-                <Route path="/" element={<Main loggedIn={loggedIn} logOut={logOut}/>}>
-                    <Route index element={<About/>}/>
-                    <Route path="movies" element={<ProtectedRouteElement element={[Movies]}/>}/>
-                    <Route path="saved-movies" element={<ProtectedRouteElement element={[SavedMovies]}/>}/>
-                </Route>
-                <Route path="/profile" element={<ProtectedRouteElement element={[Profile]}
-                    email={email}
-                    name={name}
-                    logOut={logOut}
-                    loggedIn={loggedIn}
-                    serverError={serverError}
-                    setCurrentUser={setCurrentUser}
-                />}/>
-                <Route path="/signin" element={<Login
-                    handleSubmitLogin={handleSubmitLogin}
-                    serverError={serverError}
-                    loggedIn={loggedIn}
-                    isSubmitting={isSubmitting}
-                />}/>
-                <Route path="/signup" element={<Register
-                    handleSubmitLogin={handleSubmitLogin}
-                    loggedIn={loggedIn}
-                />}/>
-                <Route path="*" element={<Error/>}/>
-            </Routes>
-        </div>
+            <div className="app">
+                <Routes>
+                    <Route path="/" element={<Main loggedIn={loggedIn} logOut={logOut}/>}>
+                        <Route index element={<About/>}/>
+                        <Route path="movies" element={<ProtectedRouteElement element={[Movies]}/>}/>
+                        <Route path="saved-movies" element={<ProtectedRouteElement element={[SavedMovies]}/>}/>
+                    </Route>
+                    <Route path="/profile" element={<ProtectedRouteElement element={[Profile]}
+                                                                           email={email}
+                                                                           name={name}
+                                                                           logOut={logOut}
+                                                                           loggedIn={loggedIn}
+                                                                           serverError={serverError}
+                                                                           setCurrentUser={setCurrentUser}
+                    />}/>
+                    <Route path="/signin" element={<Login
+                        handleSubmitLogin={handleSubmitLogin}
+                        serverError={serverError}
+                        loggedIn={loggedIn}
+                        isSubmitting={isSubmitting}
+                    />}/>
+                    <Route path="/signup" element={<Register
+                        handleSubmitLogin={handleSubmitLogin}
+                        loggedIn={loggedIn}
+                    />}/>
+                    <Route path="*" element={<Error/>}/>
+                </Routes>
+            </div>
         </CurrentUserContext.Provider>
     )
 }

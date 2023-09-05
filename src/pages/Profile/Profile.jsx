@@ -1,4 +1,4 @@
-import {useState, useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import './Profile.css';
 import Header from "../../layouts/Header/Header";
 import Logo from "../../components/Logo/Logo";
@@ -7,7 +7,7 @@ import Input from "../../components/ui/Input/Input";
 import Button from "../../components/ui/Button/Button";
 import NavLinkComp from "../../components/ui/NavLinkComp/NavLinkComp";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
-import {api}  from "../../utils/MainApi";
+import {api} from "../../utils/MainApi";
 import {useForm} from '../../hooks/useForm';
 import * as consts from '../../utils/Consts';
 
@@ -16,9 +16,9 @@ function Profile(props) {
     const currentUser = useContext(CurrentUserContext);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const { handleChange, errors, isValid, validityCodes} = useForm();
-    const [initialName, setInitialName ] = useState("");
-    const [initialEmail, setInitialEmail ] = useState("");
+    const {handleChange, errors, isValid, validityCodes} = useForm();
+    const [initialName, setInitialName] = useState("");
+    const [initialEmail, setInitialEmail] = useState("");
     const [serverError, setServerError] = useState('');
     const [success, setSuccess] = useState('');
     const [nameChange, setNameChange] = useState(false);
@@ -39,6 +39,7 @@ function Profile(props) {
         handleChange(e);
         setNameChange(e.target.value !== initialName);
     }
+
     function handleEmailChange(e) {
         setEmail(e.target.value);
         handleChange(e);
@@ -113,10 +114,12 @@ function Profile(props) {
                         </form>
                     </div>
                     <div className="profile__buttons">
-                        <span className="profile__success">{ success }</span>
-                        <span className="profile__error">{ serverError }</span>
-                                < Button type={"submit"} kind={"editProfile"} form={"profile"} children={"Редактировать"} disabled={!(isValid && (nameChange || emailChange)) && !isSubmitting}/>
-                                < NavLinkComp children={"Выйти из аккаунта"} direction={"/"} kind={"profile"} onClick={props.logOut}/>
+                        <span className="profile__success">{success}</span>
+                        <span className="profile__error">{serverError}</span>
+                        < Button type={"submit"} kind={"editProfile"} form={"profile"} children={"Редактировать"}
+                                 disabled={!(isValid && (nameChange || emailChange)) && !isSubmitting}/>
+                        < NavLinkComp children={"Выйти из аккаунта"} direction={"/"} kind={"profile"}
+                                      onClick={props.logOut}/>
                     </div>
                 </section>
             </main>

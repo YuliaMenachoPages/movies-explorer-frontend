@@ -40,14 +40,17 @@ function SavedMovies() {
             }
         } else {
             setFilteredMovies(searchedMovies);
-            setSearchError("");
+            if (searchedMovies.length === 0) {
+                setSearchError('Ничего не найдено');
+            } else {
+                setSearchError("");
+            }
         }
     }
 
     function filterMovies(search, isChecked) {
         const searchResult = savedMovies.filter(movie =>
             movie.nameRU.toLowerCase().includes(search) || movie.nameEN.toLowerCase().includes(search));
-
         setSearchedMovies(searchResult);
         if (isChecked) {
             const toggleResult = searchResult.filter(movie => movie.duration <= 40);
@@ -76,11 +79,14 @@ function SavedMovies() {
         setErrorId(movieId)
         api.deleteMovie(id)
             .then(() => {
-                setSavedMovies(prevSavedMovies =>
-                    prevSavedMovies.filter(movie => movie.movieId !== movieId)
+                setSavedMovies(savedMovies =>
+                    savedMovies.filter(movie => movie._id !== id)
                 );
-                setFilteredMovies(movies =>
-                    movies.filter(movie => movie.movieId !== movieId)
+                setFilteredMovies(filteredMovies =>
+                    filteredMovies.filter(movie => movie._id !== id)
+                );
+                setSearchedMovies(searchedMovies =>
+                    searchedMovies.filter(movie => movie._id !== id)
                 );
             })
             .catch(() => {

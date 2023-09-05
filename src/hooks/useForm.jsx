@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import {useCallback, useState} from "react";
 
 export function useForm() {
     const [formValue, setFormValue] = useState({});
@@ -20,12 +20,14 @@ export function useForm() {
         setValid(newIsValid);
     }, [setFormValue, setErrors, setValid])
 
-    return {formValue,
+    return {
+        formValue,
         validityCodes,
         handleChange,
         setFormValue,
         errors,
         isValid,
         setValid,
-        resetForm};
+        resetForm
+    };
 }

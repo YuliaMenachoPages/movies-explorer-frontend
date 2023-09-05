@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {useForm} from '../../hooks/useForm';
 import './SearchForm.css';
 import Button from "../ui/Button/Button";
@@ -9,30 +9,35 @@ import Toggle from "../ui/Toggle/Toggle";
 function SearchForm(props) {
     const [searchValue, setSearchValue] = useState("");
     const [errorVisible, setErrorVisible] = useState(false);
-    const location = useLocation();
-    const {formValue, handleChange,} = useForm();
     const [togglerStatus, setTogglerStatus] = useState(false);
+    const location = useLocation();
+    const {formValue, setFormValue, handleChange} = useForm();
 
     useEffect(() => {
         if (location.pathname === '/movies') {
             setSearchValue(localStorage.getItem('searchRequestMovies'));
+            setFormValue(localStorage.getItem('searchRequestMovies'));
         }
+        console.log("searchValue:"+searchValue);
+        console.log("formValue:"+formValue.search);
     }, []);
 
     function handleSearch(e) {
-    handleChange(e);
+        handleChange(e);
         setSearchValue(e.target.value);
         setErrorVisible(false);
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (!formValue.search) {
+        if(!formValue.searchMovie)
+        { return }
+       if (!searchValue) {
             setErrorVisible(true);
         } else {
-            props.handleSubmitSearch(formValue.search.toLowerCase().trim(), togglerStatus);
+            props.handleSubmitSearch(formValue.searchMovie.toLowerCase().trim(), togglerStatus);
             if (location.pathname === '/movies') {
-                localStorage.setItem('searchRequestMovies', formValue.search.toLowerCase().trim());
+                localStorage.setItem('searchRequestMovies', formValue.searchMovie.toLowerCase().trim());
             }
         }
     }
@@ -42,25 +47,25 @@ function SearchForm(props) {
             <form className="searchForm" onSubmit={handleSubmit} id={"search"}>
                 <fieldset className="searchForm__bar">
                     < Input
-                        name={"search"}
-                            errorText={errorVisible && "Нужно ввести ключевое слово"}
-                            type={"text"}
-                            kind={"search"}
-                            inpId={"search"}
-                            placeholder={"Фильм"}
+                        name={"searchMovie"}
+                        errorText={errorVisible && "Нужно ввести ключевое слово"}
+                        type={"text"}
+                        kind={"search"}
+                        inpId={"search"}
+                        placeholder={"Фильм"}
                         onChange={handleSearch}
                         value={searchValue || ""}
-                            />
+                    />
                     < Button kind={"search"} type={"submit"} form={"search"} disabled={props.isSubmitting}/>
                 </fieldset>
                 <div className="searchForm__toggleWrapper">
                     < Toggle
-                    togglerStatus={togglerStatus}
-                    setTogglerStatus={setTogglerStatus}
-                    searchedMovies={props.searchedMovies}
-                    filteredMovies={props.filteredMovies}
-                    setFilteredMovies={props.setFilteredMovies}
-                    handleToggle={props.handleToggle}
+                        togglerStatus={togglerStatus}
+                        setTogglerStatus={setTogglerStatus}
+                        searchedMovies={props.searchedMovies}
+                        filteredMovies={props.filteredMovies}
+                        setFilteredMovies={props.setFilteredMovies}
+                        handleToggle={props.handleToggle}
                     />
                 </div>
             </form>

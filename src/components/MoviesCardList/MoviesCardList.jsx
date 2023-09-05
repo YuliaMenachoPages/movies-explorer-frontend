@@ -7,7 +7,7 @@ function MoviesCardList({children, ...props}) {
 
     return (
         <section className="moviesCardList">
-            {props.isLoading && <Preloader /> }
+            {props.isLoading && <Preloader/>}
             {props.searchError && <div className="moviesCardList__searchError">{props.searchError}</div>}
             {props.serverError && <div className="moviesCardList__serverError">{props.serverError}</div>}
             <ul className="moviesCardList__wrapper">

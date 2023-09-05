@@ -1,4 +1,5 @@
 const serverUrl = 'https://api.nomoreparties.co';
+
 class MoviesApi {
     constructor({initialUrl}) {
         this.initialUrl = initialUrl;
@@ -20,7 +21,6 @@ class MoviesApi {
         })
             .then(res => this._getResponseData(res));
     }
-
 
 
     addLike(cardId) {

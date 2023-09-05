@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './Login.css';
 import Input from "../../components/ui/Input/Input";
 import Button from "../../components/ui/Button/Button";
@@ -26,12 +26,13 @@ function Login(props) {
     return (
         <FormWrapper
             title={"Рады видеть!"}
-            button={<Button type={"submit"} children={"Войти"} form={"login"} disabled={!isValid && !props.isSubmitting}/>}
+            button={<Button type={"submit"} children={"Войти"} form={"login"}
+                            disabled={!isValid && !props.isSubmitting}/>}
             text={"Еще не зарегистрированы?"}
             link={<NavLinkComp children={"Регистрация"} direction={"/signup"} kind={"blue"}/>}
             id={"login"}
             handleSubmit={submitLogin}
-        serverError={props.serverError}
+            serverError={props.serverError}
         >
             <Input
                 name="email"

@@ -53,16 +53,16 @@
 .profile__name {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     border-bottom: 1px solid var(--border-color);
-    padding: 0 0 13px 0;
+    padding: 0;
 }
 
 .profile__email {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin: 0;
     padding-top: 10px;
@@ -75,7 +75,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    padding: 0;
+    padding: 5px 0 15px 0;
     margin: 0 15px 0 0;
 }
 
@@ -99,6 +99,7 @@
     font-weight: 400;
     line-height: normal;
 }
+
 .profile__success {
     padding: 0;
     margin: 0;

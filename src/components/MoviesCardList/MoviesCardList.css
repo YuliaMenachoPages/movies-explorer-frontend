@@ -22,7 +22,7 @@
 
 .moviesCardList__searchError {
     padding: 0;
-    margin: 20px auto;
+    margin: 0 auto 10px 0;
     color: var(--accent-color-blue);
     text-align: center;
     font-family: Inter, sans-serif;

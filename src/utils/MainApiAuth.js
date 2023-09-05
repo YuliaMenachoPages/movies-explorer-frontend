@@ -1,6 +1,6 @@
 export const BASE_URL = 'http://localhost:3000';
 
-function getResponseData (res)  {
+function getResponseData(res) {
     if (!res.ok) {
         return Promise.reject(`Ошибка: ${res.status}`);
     }
@@ -17,7 +17,7 @@ export const register = (name, email, password) => {
         body: JSON.stringify({name, email, password})
     })
         .then(res => getResponseData(res));
-    }
+}
 
 export const login = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
@@ -29,7 +29,7 @@ export const login = (email, password) => {
         body: JSON.stringify({email, password})
     })
         .then(res => getResponseData(res))
-.then((data) => {
+        .then((data) => {
             if (data.token) {
                 localStorage.setItem('token', data.token);
                 return data;

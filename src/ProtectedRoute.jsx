@@ -1,11 +1,11 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 
-function ProtectedRouteElement({ element: Components, ...props }) {
+function ProtectedRouteElement({element: Components, ...props}) {
     const loggedIn = localStorage.getItem('token') !== null;
     return (
-            loggedIn ? Components.map((Component) => (<Component {...props} key={`${Component}`}/>)) :
-                <Navigate to='/' replace />
+        loggedIn ? Components.map((Component) => (<Component {...props} key={`${Component}`}/>)) :
+            <Navigate to='/' replace/>
     )
 }
 
