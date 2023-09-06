@@ -18,8 +18,6 @@ function SearchForm(props) {
             setSearchValue(localStorage.getItem('searchRequestMovies'));
             setFormValue(localStorage.getItem('searchRequestMovies'));
         }
-        console.log("searchValue:"+searchValue);
-        console.log("formValue:"+formValue.search);
     }, []);
 
     function handleSearch(e) {
@@ -30,9 +28,10 @@ function SearchForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if(!formValue.searchMovie)
-        { return }
-       if (!searchValue) {
+        if (!formValue.searchMovie) {
+            return
+        }
+        if (!searchValue) {
             setErrorVisible(true);
         } else {
             props.handleSubmitSearch(formValue.searchMovie.toLowerCase().trim(), togglerStatus);

@@ -5,7 +5,7 @@
 Адреса репозиториев
 Фронтенд: `https://github.com/YuliaMenachoPages/movies-explorer-frontend`
 Бэкенд: `https://github.com/YuliaMenachoPages/movies-explorer-api`
-Пулл реквест level-3: 
+Пулл реквест level-3:
 
 Домен
 Фронтенд: `https://moviesjump.nomoredomains.sbs`

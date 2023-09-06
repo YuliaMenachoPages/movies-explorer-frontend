@@ -16,7 +16,7 @@
     display: block;
 }
 
-    .moviesCard__saveError {
+.moviesCard__saveError {
     padding: 0;
     margin: 0 auto;
     color: var(--accent-color-pink);

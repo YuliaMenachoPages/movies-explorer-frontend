@@ -24,7 +24,7 @@ function Movies() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
 
-     useEffect(() => {
+    useEffect(() => {
         setIsLoading(true);
         api.getInitialCards()
             .then(savedMovies => {
@@ -49,7 +49,7 @@ function Movies() {
             const toggleResult = searchedMovies.filter(movie => movie.duration <= 40);
             setFilteredMovies(toggleResult);
             localStorage.setItem('filteredMovies', JSON.stringify(toggleResult));
-            if (toggleResult.length === 0 ) {
+            if (toggleResult.length === 0) {
                 setSearchError('Ничего не найдено');
             } else {
                 setSearchError("");

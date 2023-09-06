@@ -17,7 +17,7 @@ function Burger(props) {
                     <span className="burger_line burger_line_2"></span>
                     <span className="burger_line burger_line_3"></span>
                 </div>
-             </form>
+            </form>
         </div>
     )
 }

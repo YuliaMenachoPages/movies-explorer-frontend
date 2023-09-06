@@ -5,6 +5,7 @@ import Burger from "../ui/Burger/Burger";
 
 function Navigation({children, ...props}) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     function handleLinkClick() {
         setIsMenuOpen(false);
     }
@@ -12,6 +13,7 @@ function Navigation({children, ...props}) {
     function handleBurgerClick() {
         setIsMenuOpen(!isMenuOpen);
     }
+
     return (
         <div className="navigation">
             {children}

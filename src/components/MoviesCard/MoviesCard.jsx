@@ -29,7 +29,7 @@ function MoviesCard({children, ...props}) {
         if (props.movie._id) {
             setIsSaved(true);
         }
-    })
+    }, [props.movie._id])
 
     useEffect(() => {
         if (props.movie.movieId === props.errorId) {
@@ -46,7 +46,7 @@ function MoviesCard({children, ...props}) {
             return `${time}м`;
         }
         return `${Math.floor(time / 60)}ч 
-    ${(time - (Math.floor(time / 60) * 60)) !== 0 ? 
+    ${(time - (Math.floor(time / 60) * 60)) !== 0 ?
             time - (Math.floor(time / 60) * 60) + "м" : ""}`
     }
 
