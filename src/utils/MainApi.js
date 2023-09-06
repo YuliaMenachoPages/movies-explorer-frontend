@@ -1,4 +1,4 @@
-const serverUrl = 'https://moviesjump.nomoredomains.sbs';
+const serverUrl = 'https://api.moviesjump.nomoredomains.sbs';
 
 class MainApi {
     constructor({initialUrl}) {

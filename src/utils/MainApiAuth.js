@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://moviesjump.nomoredomains.sbs';
+export const BASE_URL = 'https://api.moviesjump.nomoredomains.sbs';
 
 function getResponseData(res) {
     if (!res.ok) {

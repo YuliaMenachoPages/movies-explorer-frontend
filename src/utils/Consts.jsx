@@ -1,5 +1,5 @@
 export const NAME_PATTERN = "^([a-zа-яA-ЯA-Z\\- ]{1,}|)$";
-export const EMAIL_PATTERN = "\\S+@\\S+\\.\\S+";
+export const EMAIL_PATTERN = "^[^ ]+@[^ ]+\\.[a-z]{2,6}$";
 
 export const LG_ROW_CARD_COUNT = 3;
 export const MD_ROW_CARD_COUNT = 2;
