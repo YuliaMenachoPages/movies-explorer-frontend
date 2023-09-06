@@ -28,15 +28,14 @@ function SearchForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (!formValue.searchMovie) {
+        if (formValue == null || !formValue.searchMovie) {
+            (!searchValue && setErrorVisible(true));
             return
         }
-        if (!searchValue) {
-            setErrorVisible(true);
-        } else {
-            props.handleSubmitSearch(formValue.searchMovie.toLowerCase().trim(), togglerStatus);
+        else {
+            props.handleSubmitSearch(formValue.searchMovie?.toLowerCase().trim(), togglerStatus);
             if (location.pathname === '/movies') {
-                localStorage.setItem('searchRequestMovies', formValue.searchMovie.toLowerCase().trim());
+                localStorage.setItem('searchRequestMovies', formValue.searchMovie?.toLowerCase().trim());
             }
         }
     }
