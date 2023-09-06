@@ -4,6 +4,11 @@
     --main-text-color: rgba(255, 255, 255, 1);
     --border-color: rgba(66, 66, 66, 1);
     --accent-color-pink: rgba(238, 52, 101, 1);
+    position: relative;
+}
+
+.input_kind_form {
+    width: 396px;
 }
 
 .inputField {
@@ -57,13 +62,9 @@
     margin: 0;
     height: 20px;
     border-radius: 2px;
-
+    min-width: 150px;
 }
 
-.inputField_kind_profile::placeholder {
-    color: var(--main-text-color);
-    opacity: 1;
-}
 
 .input__label {
     color: var(--secondary-text-color);
@@ -101,9 +102,19 @@
     -webkit-box-orient: vertical;
     margin: 0;
     padding: 0;
+    text-wrap: normal;
+}
+
+.input__errorWrapper_kind_profile {
+    overflow: hidden;
+    margin: 0;
 }
 
 @media screen and (max-width: 600px) {
+
+    .input_kind_form {
+        width: calc(100vw - 60px);
+    }
 
     .inputField_kind_search {
         height: 44px;

@@ -1,7 +1,7 @@
 import React from "react";
 import './Button.css';
 
-function Button({kind, disabled, onClick, type, children}) {
+function Button({kind, disabled, onClick, type, form, children, ...props}) {
 
     return (
         <button
@@ -9,6 +9,7 @@ function Button({kind, disabled, onClick, type, children}) {
             disabled={disabled}
             onClick={onClick}
             type={type}
+            form={form}
         >{children}
         </button>
     );

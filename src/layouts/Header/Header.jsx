@@ -1,9 +1,14 @@
+import React, {Children, cloneElement} from "react";
 import "./Header.css";
 
-function Header({children}) {
+function Header({children, ...props}) {
     return (
         <header className="header">
-            {children}
+            {Children.map(children, (child) => {
+                return cloneElement(child, {
+                    ...props
+                })
+            })}
         </header>
     )
 }

@@ -5,6 +5,7 @@
     --main-text-color: rgba(255, 255, 255, 1);
     --border-color: rgba(66, 66, 66, 1);
     --accent-color-pink: rgba(238, 52, 101, 1);
+    --accent-color-green: rgba(61, 220, 132, 1);
 }
 
 .mainProfile {
@@ -52,16 +53,16 @@
 .profile__name {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     border-bottom: 1px solid var(--border-color);
-    padding: 0 0 13px 0;
+    padding: 0;
 }
 
 .profile__email {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin: 0;
     padding-top: 10px;
@@ -74,7 +75,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    padding: 0;
+    padding: 5px 0 15px 0;
     margin: 0 15px 0 0;
 }
 
@@ -91,6 +92,18 @@
     padding: 0;
     margin-bottom: 20px;
     color: var(--accent-color-pink);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.profile__success {
+    padding: 0;
+    margin: 0;
+    color: var(--accent-color-green);
     text-align: center;
     font-family: Inter, sans-serif;
     font-size: 11px;

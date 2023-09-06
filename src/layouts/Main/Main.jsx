@@ -7,12 +7,11 @@ import Navigation from "../../components/Navigation/Navigation";
 import Logo from "../../components/Logo/Logo";
 
 
-function Main() {
+function Main(props) {
     return (
         <div className="main">
-            <Header>
-                <Navigation children={<Logo/>}/>
-                {/*<Burger />*/}
+            <Header loggedIn={props.loggedIn} logOut={props.logOut}>
+                <Navigation loggedIn={props.loggedIn} logOut={props.logOut} children={<Logo/>}/>
             </Header>
             <Outlet/>
             <Footer/>

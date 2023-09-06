@@ -1,4 +1,6 @@
 .moviesCardList {
+    --accent-color-pink: rgba(238, 52, 101, 1);
+    --accent-color-blue: rgba(66, 133, 244, 1);
     margin: 80px 0 65px 0;
     padding: 0;
     display: block;
@@ -16,6 +18,30 @@
     justify-content: center;
     align-content: center;
     list-style: none;
+}
+
+.moviesCardList__searchError {
+    padding: 0;
+    margin: 0 auto 10px 0;
+    color: var(--accent-color-blue);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.moviesCardList__serverError {
+    padding: 0;
+    margin: 20px auto;
+    color: var(--accent-color-pink);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 @media screen and (max-width: 900px) {
